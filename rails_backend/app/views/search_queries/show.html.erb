@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Search uid:</strong>
+  <%= @search_query.search_uid %>
+</p>
+
+<%= link_to 'Edit', edit_search_query_path(@search_query) %> |
+<%= link_to 'Back', search_queries_path %>

@@ -1,0 +1,38 @@
+<%= form_with(model: search_query, local: true) do |form| %>
+<% if search_query.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(search_query.errors.count, "error") %>
+      prohibited this search_query from being saved:</h2>
+
+    <ul>
+      <% search_query.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field">
+  <%= form.label :search_uid %>
+  <%= form.text_field :search_uid %>
+</div>
+<br>
+<%= form.fields_for :addres do |ff| %>
+<div class="field">
+  <%= ff.label :city %>
+  <%= ff.text_field :city %>
+</div>
+<div class="field">
+  <%= ff.label :street %>
+  <%= ff.text_field :street %>
+</div>
+<div class="field">
+  <%= ff.label :house %>
+  <%= ff.text_field :house %>
+</div>
+<% end %>
+
+<div class="actions">
+<%= form.submit %>
+</div>
+<% end %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Search Queries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Search uid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_queries.each do |search_query| %>
+      <tr>
+        <td><%= search_query.search_uid %></td>
+        <td><%= link_to 'Show', search_query %></td>
+        <td><%= link_to 'Edit', edit_search_query_path(search_query) %></td>
+        <td><%= link_to 'Destroy', search_query, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search Query', new_search_query_path %>
