@@ -20,10 +20,11 @@
 
   query: {
    optional сadastr_id: uint32
+   optional useg_сadastr: bool
    required region: string
    optional district: string
    optional populated_area: string
-   required street: string
+   required street_type: string
    required street_name: string
    required house_number: string
    required apartment: string
