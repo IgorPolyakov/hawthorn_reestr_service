@@ -7,11 +7,11 @@
 
 <p>
   <strong>Locations:</strong>
+  <ul>
   <% @search_query.locations.each do |location| %>
-    <%= location.city %>
-    <%= location.street %>
-    <%= location.house %>
+    <li><%= "#{location.city} #{location.street} #{location.house}" %></li>
   <% end %>
+</ul>
 </p>
 
 
