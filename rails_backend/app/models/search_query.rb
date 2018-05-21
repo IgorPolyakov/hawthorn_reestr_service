@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SearchQuery
   include Mongoid::Document
   field :search_uid, type: String
