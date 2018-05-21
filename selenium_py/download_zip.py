@@ -4,10 +4,11 @@ Download zip files from roseestr by job uid
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from sys import exit
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from rosreestr import Login
 
 import json
 
@@ -23,6 +24,10 @@ profile.set_preference("browser.download.manager.showWhenStarting",False)
 profile.set_preference("browser.download.dir", os.path.expanduser('~/download'))
 profile.set_preference("browser.helperApps.neverAsk.saveToDisk","application/zip")
 
+
+print(Login.token[0])
+
+sys.exit("don't found elemets: v-textfield")
 
 class QueryKdr:
 	"""it contains data about QueryKdr"""
