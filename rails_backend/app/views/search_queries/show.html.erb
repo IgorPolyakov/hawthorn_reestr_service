@@ -5,5 +5,15 @@
   <%= @search_query.search_uid %>
 </p>
 
+<p>
+  <strong>Locations:</strong>
+  <% @search_query.locations.each do |location| %>
+    <%= location.city %>
+    <%= location.street %>
+    <%= location.house %>
+  <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_search_query_path(@search_query) %> |
 <%= link_to 'Back', search_queries_path %>

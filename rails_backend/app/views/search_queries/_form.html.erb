@@ -17,18 +17,18 @@
   <%= form.text_field :search_uid %>
 </div>
 <br>
-<%= form.fields_for :addres do |ff| %>
+<%= form.fields_for :locations, Location.new do |location_form| %>
 <div class="field">
-  <%= ff.label :city %>
-  <%= ff.text_field :city %>
+  <%= location_form.label :city %>
+  <%= location_form.text_field :city %>
 </div>
 <div class="field">
-  <%= ff.label :street %>
-  <%= ff.text_field :street %>
+  <%= location_form.label :street %>
+  <%= location_form.text_field :street %>
 </div>
 <div class="field">
-  <%= ff.label :house %>
-  <%= ff.text_field :house %>
+  <%= location_form.label :house %>
+  <%= location_form.text_field :house %>
 </div>
 <% end %>
 

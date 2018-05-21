@@ -68,9 +68,11 @@ class SearchQueriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def search_query_params
-    params.require(:search_query).permit(
-      :search_uid,
-      addres_attributes: %i[city street house]
-    )
+    params
+      .require(:search_query)
+      .permit(
+        :search_uid,
+        locations_attributes: %i[city street house]
+      )
   end
 end

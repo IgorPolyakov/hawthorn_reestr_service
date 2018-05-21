@@ -1,4 +1,4 @@
-class Address
+class Location
   include Mongoid::Document
   field :city, type: String
   field :street, type: String
