@@ -13,6 +13,7 @@ class QueryKdr:
 		self.date_request = ""
 		self.status = ""
 		self.zip_url = ""
+		self.root_path = ""
 
 class QuerySearch:
 	"""it contains data about QueryKdr"""
