@@ -5,7 +5,7 @@
 before to start:
 ```
 $ sudo apt update && sudo apt dist-upgrade
-$ sudo apt install python3-pip
+$ sudo apt install python3-pip firefox
 ```
 
 virtual display:
@@ -24,5 +24,31 @@ $ tar -xvf geckodriver-v0.20.1-linux64.tar.gz
 $ export PATH=$PATH:$PWD
 ```
 
+## Help
+```
+Welcome to the help for zip loader v.1.
 
-ssh-keygen -t rsa -b 4096 -C "neverhooda@gmail.com"
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --virtual         Enabled useg virtual display
+  -t [TOKEN], --token [TOKEN]
+                        Set token for loggin on site, it's have default value.
+  -q [QUERY], --query [QUERY]
+                        As a query, specify the search_uid. uid separate by ','.
+  -f, --file            Send result to file bin/result.json.
+  -wb, --websocket      Send result to web socket, do not work.
+  -o [OUTPUT], --output [OUTPUT]
+                        Set output path for download files, default ~/download
+```
+
+## Useg zip_loader.py
+Example: 
+```
+$ python3 zip_loader.py -f -wb -v -q "80-39089147,80-39089144,80-39089138" -t "c5793610-b33b-476f-bebf-53a0f1366383"
+
+```
+Example for test with default token and query: 
+```
+$ python3 zip_loader.py -f -v
+
+```

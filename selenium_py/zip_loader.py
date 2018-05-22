@@ -23,18 +23,22 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
 
+from pyvirtualdisplay import Display
+
 import time # del
 
 def terminate(t,m):
 	browser.quit()
+	if args.virtual:
+		display.stop()
 	sys.exit("[%s] %s"%(t,m)) 
 
 def obj_dict(obj):
 	return obj.__dict__
 
 parser = argparse.ArgumentParser(description='Welcome to the help for zip loader v.1.')
-parser.add_argument("-t", "--test", dest='onTest', action='store_true', help="For testing loader, get default values")
-parser.add_argument("-T", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
+parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display")
+parser.add_argument("-t", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
 #parser.add_argument("-q", "--query", dest='query', nargs = 1, type = str, const = '[{search_uid = "80-39089153"}]',required=True, help="As a query, specify the search_uid. The query must be in the jason.")
 parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, const = '80-39089153,80-39089149',required=True, help="As a query, specify the search_uid. uid separate by ','")
 parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/result.json")
@@ -55,6 +59,10 @@ if len(token) != 5 :
 
 #search_uids = json.loads(args.query)
 search_uids = args.query.split(',')
+
+if args.virtual:
+	display = Display(visible=0, size=(1366, 768))
+	display.start()
 
 browser = webdriver.Firefox(firefox_profile=profile)
 browser.get(base_url)
@@ -118,3 +126,6 @@ if args.onWebsocket:
 	print("[INFO] This option do not work, coming soon...")
 
 browser.quit()
+
+if args.virtual:
+	display.stop()
