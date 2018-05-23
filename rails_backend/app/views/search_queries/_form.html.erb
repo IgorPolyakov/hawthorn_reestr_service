@@ -16,8 +16,7 @@
   <%= form.label :search_uid %>
   <%= form.text_field :search_uid %>
 </div>
-<br>
-<%= form.add_nested_fields_link :locations %>
+
 <br>
 <%= form.nested_fields_for :locations, Location.new do |location_form| %>
 <div class="field">
@@ -33,8 +32,11 @@
   <%= location_form.text_field :house %>
 </div>
 <div class="field">
-<%= location_form.label 'Remove location' %>
-  <%= location_form.remove_nested_fields_link %>
+  <%= location_form.label :room %>
+  <%= location_form.text_field :room %>
+</div>
+<div class="field">
+  <%= form.add_nested_fields_link :locations %> | <%= location_form.remove_nested_fields_link %>
 </div>
 <% end %>
 <br>

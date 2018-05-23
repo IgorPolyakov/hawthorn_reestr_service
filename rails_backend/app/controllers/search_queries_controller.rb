@@ -74,7 +74,7 @@ class SearchQueriesController < ApplicationController
       .require(:search_query)
       .permit(
         :search_uid,
-        locations_attributes: %i[city street house]
+        locations_attributes: %i[city street house room]
       )
   end
 end

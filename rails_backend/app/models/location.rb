@@ -5,5 +5,6 @@ class Location
   field :city, type: String
   field :street, type: String
   field :house, type: String
+  field :room, type: String
   embedded_in :search_query
 end
