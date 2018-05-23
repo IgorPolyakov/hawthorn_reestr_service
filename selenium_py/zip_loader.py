@@ -86,7 +86,7 @@ except TimeoutException:
 try:
 	msg = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, ResponseMenu.count_query)))
 except TimeoutException:
-	terminate('ERROR', 'Main menu page was not loaded')
+	terminate('ERROR', 'Finde results page was not loaded')
 
 total_row = ResponseMenu.getCount(msg.text)
 if total_row <= 0 :
