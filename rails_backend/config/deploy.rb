@@ -64,8 +64,7 @@ task :deploy do
 
     on :launch do
       in_path(fetch(:current_path)) do
-        command %(mkdir -p tmp/)
-        command %(touch tmp/restart.txt)
+        command %(sudo systemctl restart hawthorn_reestr_service.service)
       end
     end
   end
