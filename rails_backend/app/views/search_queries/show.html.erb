@@ -9,7 +9,7 @@
   <strong>Locations:</strong>
   <ul>
   <% @search_query.locations.each do |location| %>
-    <li><%= "#{location.city} #{location.street} #{location.house}" %></li>
+    <li><%= "#{location.city} #{location.street} #{location.house}" "#{location.room}"%></li>
   <% end %>
 </ul>
 </p>
