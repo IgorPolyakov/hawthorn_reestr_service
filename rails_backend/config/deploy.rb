@@ -59,7 +59,7 @@ task :deploy do
     invoke :'deploy:link_shared_paths'
     command %(cd rails_backend)
     invoke :'bundle:install'
-    # invoke :'rails:assets_precompile'
+    invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
     on :launch do

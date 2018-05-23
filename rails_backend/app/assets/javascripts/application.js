@@ -9,11 +9,10 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require bootstrap-sprockets
-//= require jquery_ujs
-//= require jquery3
-//= require nested_form_fields
-//= require popper
 //= require rails-ujs
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require nested_form_fields
 //= require turbolinks
 //= require_tree .
