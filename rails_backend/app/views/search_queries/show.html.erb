@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Search uid:</strong>
-  <%= @search_query.search_uid %>
+  <strong>Название:</strong>
+  <%= @search_query.title %>
 </p>
 
 <p>
-  <strong>Locations:</strong>
+  <strong>Адрес:</strong>
   <ul>
   <% @search_query.locations.each do |location| %>
     <li><%= "г. #{location.city}, ул. #{location.street}, д. #{location.house} кв. #{location.room}"%></li>
@@ -14,4 +14,4 @@
 </ul>
 </p>
 
-<%= link_to 'Back', search_queries_path %>
+<%= link_to 'Назад', search_queries_path %>
