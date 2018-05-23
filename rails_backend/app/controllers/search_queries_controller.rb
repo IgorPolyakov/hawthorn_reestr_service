@@ -37,20 +37,6 @@ class SearchQueriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /search_queries/1
-  # PATCH/PUT /search_queries/1.json
-  def update
-    respond_to do |format|
-      if @search_query.update(search_query_params)
-        format.html { redirect_to @search_query, notice: 'Search query was successfully updated.' }
-        format.json { render :show, status: :ok, location: @search_query }
-      else
-        format.html { render :edit }
-        format.json { render json: @search_query.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /search_queries/1
   # DELETE /search_queries/1.json
   def destroy
