@@ -8,6 +8,7 @@ class SearchQuery
   accepts_nested_attributes_for :locations
 
   def status
-    'в обработке'
+    total = locations.inject(0) { |sum, loc| sum += 1 if loc.status == 'готово' }.to_i
+    "#{total}/#{locations.count}"
   end
 end
