@@ -186,6 +186,8 @@ print(json_string)
 # start script for repack zip task
 
 if args.onFile:
+	if not os.path.exists('bin'):
+    	os.makedirs('bin')
 	file = open('bin/query_sender.json', 'wb')
 	file.write(json_string.encode('utf-8'))
 
