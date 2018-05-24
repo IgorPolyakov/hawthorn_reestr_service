@@ -37,13 +37,13 @@ def obj_dict(obj):
 	return obj.__dict__
 
 parser = argparse.ArgumentParser(description='Welcome to the help for zip loader v.1.')
-parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display")
+parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display.")
 parser.add_argument("-t", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
 #parser.add_argument("-q", "--query", dest='query', nargs = 1, type = str, const = '[{search_uid = "80-39089153"}]',required=True, help="As a query, specify the search_uid. The query must be in the jason.")
-parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, const = '80-39089153,80-39089149',required=True, help="As a query, specify the search_uid. uid separate by ','")
-parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/result.json")
-parser.add_argument("-wb", "--websocket", dest='onWebsocket', action='store_true', help="Send result to web socket, do not work")
-parser.add_argument("-o", "--output", dest='output', nargs = '?', type = str, default = "~/download", help="Set output path for download files, default ~/download")
+parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '80-39089153,80-39089149', help="As a query, specify the search_uid. uid separate by ','.")
+parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/result.json.")
+parser.add_argument("-http", "--http", dest='onHttp', action='store_true', help="Send result to http url.")
+parser.add_argument("-o", "--output", dest='output', nargs = '?', type = str, default = "~/download", help="Set output path for download files, default ~/download.")
 
 args = parser.parse_args()
 
@@ -119,10 +119,10 @@ print(json_string)
 # start script for repack zip task
 
 if args.onFile:
-	file = open('bin/result.json', 'wb')
+	file = open('bin/zip_loader.json', 'wb')
 	file.write(json_string.encode('utf-8'))
 
-if args.onWebsocket:
+if args.onHttp:
 	print("[INFO] This option do not work, coming soon...")
 
 browser.quit()
