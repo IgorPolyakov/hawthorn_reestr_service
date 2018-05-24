@@ -6,5 +6,6 @@ class Location
   field :street, type: String
   field :house, type: String
   field :room, type: String
+  field :status, type: String, default: 'в обработке'
   embedded_in :search_query
 end

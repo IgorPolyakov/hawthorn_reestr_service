@@ -10,6 +10,7 @@
   <ul>
   <% @search_query.locations.each do |location| %>
     <li><%= "г. #{location.city}, ул. #{location.street}, д. #{location.house} кв. #{location.room}"%></li>
+    <%= link_to 'Детали', search_query_location_path(@search_query,location) %>
   <% end %>
 </ul>
 </p>
