@@ -120,7 +120,7 @@ print(json_string)
 
 if args.onFile:
 	if not os.path.exists('bin'):
-    	os.makedirs('bin')
+		os.makedirs('bin')
 	file = open('bin/zip_loader.json', 'wb')
 	file.write(json_string.encode('utf-8'))
 

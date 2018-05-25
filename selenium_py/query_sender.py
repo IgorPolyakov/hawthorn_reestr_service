@@ -97,7 +97,7 @@ if not querys[i].kdastr_id is None:
 if not querys[i].region is None:
 	r = browser.find_element_by_xpath(Query.region)
 	r.send_keys(querys[i].region)
-	time.sleep(2) #for testing
+	time.sleep(3) #for testing
 	r.send_keys(Keys.ENTER)
 
 if not querys[i].district is None:
@@ -139,6 +139,8 @@ try:
 except TimeoutException:
 	terminate('ERROR', 'Searh result page was not loaded or not found query')
 
+sys.exit("TESTING") #for test
+
 try:
 	btn_send = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
 except TimeoutException:
@@ -163,15 +165,16 @@ query_result = models.QueryResult()
 #            signin_window_handle = handle
 #            break
 
-browser.switch_to_window(Sender.popup)
+#browser.switch_to_window(Sender.popup)
 
 #browser.switch_to_window(signin_window_handle)
 query_result.search_uid = browser.find_element_by_xpath(Sender.search_uid).text
 query_result.id = querys[i].id
 query_result.date = datetime.strftime("%d.%m.%Y %H:%M")
 query_results.append(query_result)
+print(query_result)
 browser.find_element_by_xpath(Sender.btn_done).click()
-browser.switch_to_default_content()
+#browser.switch_to_default_content()
 
 try:
 	retry = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_new_query)))
@@ -187,7 +190,7 @@ print(json_string)
 
 if args.onFile:
 	if not os.path.exists('bin'):
-    	os.makedirs('bin')
+		os.makedirs('bin')
 	file = open('bin/query_sender.json', 'wb')
 	file.write(json_string.encode('utf-8'))
 
