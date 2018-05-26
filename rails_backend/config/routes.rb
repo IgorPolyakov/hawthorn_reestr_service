@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :search_queries, except: :edit do
-    resources :locations
+    resources :locations, only: %i[update show]
   end
   root 'search_queries#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

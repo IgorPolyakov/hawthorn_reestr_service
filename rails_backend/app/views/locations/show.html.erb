@@ -1,4 +1,6 @@
-<p><%= @location.id %></p>
-<p><%= @location.street %></p>
-<p><%= @location.house %></p>
-<p><%= @location.room %></p>
+<span class="badge"><%= @location.status %></span>
+<p>ID: <%= @location.id %></p>
+<p>Улица: <%= @location.street %></p>
+<p>Дом: <%= @location.house %></p>
+<p>Комната: <%= @location.room %></p>
+<%= link_to "Назад", :back %>

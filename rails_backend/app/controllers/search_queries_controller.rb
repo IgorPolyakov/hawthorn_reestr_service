@@ -18,9 +18,6 @@ class SearchQueriesController < ApplicationController
     @search_query = SearchQuery.new
   end
 
-  # GET /search_queries/1/edit
-  def edit; end
-
   # POST /search_queries
   # POST /search_queries.json
   def create

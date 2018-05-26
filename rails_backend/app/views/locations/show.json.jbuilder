@@ -1,1 +1,1 @@
-json.partial! "locations/location", location: @location
+json.set! :message, 'Not work now'
