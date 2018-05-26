@@ -2,7 +2,6 @@
 
 class Location
   include Mongoid::Document
-  include Mongoid::Timestamps
 
   field :cadastr_id, type: Integer # optional
   field :region, type: String

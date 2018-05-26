@@ -14,6 +14,7 @@
   <thead>
   <tr>
     <th>Статус</th>
+    <th>Создан</th>
     <th>Описание запроса</th>
     <th>Список адресов</th>
     <th colspan="2"></th>
@@ -24,6 +25,7 @@
   <% @search_queries.each do |search_query| %>
     <tr>
       <td><span class="badge"><%= search_query.status %></span></td>
+      <td><%= search_query.created_at %></td>
       <td><%= search_query.title %></td>
       <td>
         <ul>
