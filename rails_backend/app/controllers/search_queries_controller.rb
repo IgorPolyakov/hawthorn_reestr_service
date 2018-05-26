@@ -25,7 +25,7 @@ class SearchQueriesController < ApplicationController
     respond_to do |format|
       if @search_query.save
         @search_query.locations.each do |location|
-          HardWorker.perform_async(@search_query.id, location.id)
+          HardWorker.perform_async(@search_query.id.to_s, location.id.to_s)
         end
         format.html { redirect_to @search_query, notice: 'Search query was successfully created.' }
         format.json { render :show, status: :created, location: @search_query }
@@ -60,7 +60,7 @@ class SearchQueriesController < ApplicationController
       .permit(
         :title,
         locations_attributes: %i[
-          сadastr_id
+          cadastr_id
           region
           district
           populated_area

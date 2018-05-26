@@ -17,7 +17,7 @@ class Location
   field :search_ui, type: Integer
 
   embedded_in :search_query
-  validates :region, :street, :street_name, :house_number, :apartment, :zip_url, :status, :search_ui, presence: true
+  validates :region, :street, :street_name, :house_number, :apartment, :zip_url, presence: true
 end
 
 # required date_request: yyyy-dd-MMThh:mm:ss (or some like this)
