@@ -1,0 +1,18 @@
+[Unit]
+Description=sidekiq
+
+After=network.target
+Requires=hawthorn_reestr_service.service
+
+[Service]
+Type=simple
+User=fox
+Group=fox
+WorkingDirectory=/home/fox/hawthorn_reestr_service/current/rails_backend                                        
+ExecStart=/home/fox/.rbenv/shims/bundle exec sidekiq --environment production                      
+Restart=always
+TimeoutSec=15
+
+[Install]
+WantedBy=multi-user.target
+

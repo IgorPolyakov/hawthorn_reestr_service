@@ -1,0 +1,19 @@
+[Unit]
+Description=hawthorn_reestr_service
+
+After=network.target
+Requires=mongod.service
+
+[Service]
+Type=simple
+User=fox
+Group=fox
+WorkingDirectory=/home/fox/hawthorn_reestr_service/current/rails_backend                                        
+Environment=RAILS_ENV=production
+ExecStart=/home/fox/.rbenv/shims/bundle exec rails server -e production -p 9999                      
+Restart=always
+TimeoutSec=15
+
+[Install]
+WantedBy=multi-user.target
+
