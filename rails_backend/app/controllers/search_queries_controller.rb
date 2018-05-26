@@ -22,9 +22,11 @@ class SearchQueriesController < ApplicationController
   # POST /search_queries.json
   def create
     @search_query = SearchQuery.new(search_query_params)
-
     respond_to do |format|
       if @search_query.save
+        @search_query.locations.each do |location|
+          HardWorker.perform_async(@search_query.id, location.id)
+        end
         format.html { redirect_to @search_query, notice: 'Search query was successfully created.' }
         format.json { render :show, status: :created, location: @search_query }
       else
