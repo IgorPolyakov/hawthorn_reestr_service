@@ -4,6 +4,7 @@
 - RAILS 5
 - MONGO DB 3
 - SELENIUM
+- REDIS
 
 ## Work with API: How to update status on location
 
