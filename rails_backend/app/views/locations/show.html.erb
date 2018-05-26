@@ -1,6 +1,14 @@
 <span class="badge"><%= @location.status %></span>
 <p>ID: <%= @location.id %></p>
-<p>Улица: <%= @location.street %></p>
-<p>Дом: <%= @location.house %></p>
-<p>Комната: <%= @location.room %></p>
+<p>Идентификатор Cadastr <%= @location.cadastr_id %></p>
+<p>Область <%= @location.region %></p>
+<p>Район <%= @location.district %></p>
+<p>Земельный участок <%= @location.populated_area %></p>
+<p>Улица <%= @location.street %></p>
+<p>Название улицы <%= @location.street_name %></p>
+<p>Номер дома <%= @location.house_number %></p>
+<p>Квартира <%= @location.apartment %></p>
+<p>Zip Url <%= @location.zip_url %></p>
+<p>Положение дел <%= @location.status %></p>
+<p>Поиск Ui <%= @location.search_ui %></p>
 <%= link_to "Назад", :back %>

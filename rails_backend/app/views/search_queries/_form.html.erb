@@ -22,21 +22,50 @@
     <div class="panel">
 
       <div class="form-group">
-        <%= location_form.label 'Город' %>
-        <%= location_form.text_field :city, placeholder: 'Томск', class: 'form-control' %>
+        <%= location_form.label :cadastr_id %>
+        <%= location_form.text_field :cadastr_id,  placeholder: 'Cadastr Id', class: 'form-control' %>
       </div>
+
       <div class="form-group">
-        <%= location_form.label 'Улица' %>
-        <%= location_form.text_field :street, placeholder: 'Елизаровых', class: 'form-control' %>
+        <%= location_form.label :region %>
+        <%= location_form.text_field :region,  placeholder: 'Region', class: 'form-control' %>
       </div>
+
       <div class="form-group">
-        <%= location_form.label 'Дом' %>
-        <%= location_form.text_field :house, placeholder: '1', class: 'form-control' %>
+        <%= location_form.label :district %>
+        <%= location_form.text_field :district,  placeholder: 'District', class: 'form-control' %>
       </div>
+
       <div class="form-group">
-        <%= location_form.label 'Квартира' %>
-        <%= location_form.text_field :room, placeholder: '10', class: 'form-control' %>
+        <%= location_form.label :populated_area %>
+        <%= location_form.text_field :populated_area,  placeholder: 'Populated Area', class: 'form-control' %>
       </div>
+
+      <div class="form-group">
+        <%= location_form.label :street %>
+        <%= location_form.text_field :street,  placeholder: 'Street', class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= location_form.label :street_name %>
+        <%= location_form.text_field :street_name,  placeholder: 'Street Name', class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= location_form.label :house_number %>
+        <%= location_form.text_field :house_number,  placeholder: 'House Number', class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= location_form.label :apartment %>
+        <%= location_form.text_field :apartment,  placeholder: 'Apartment', class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= location_form.label :zip_url %>
+        <%= location_form.text_field :zip_url,  placeholder: 'Zip Url', class: 'form-control' %>
+      </div>
+
       <div class="form-group">
         <%= form.add_nested_fields_link :locations %>
         |

@@ -30,7 +30,7 @@
           <% search_query.locations.each do |location| %>
             <li>
               <span class="badge"><%= location.status %></span>
-              <%= "г. #{location.city}, ул. #{location.street}, д. #{location.house} кв. #{location.room}" %>
+              <%= "г. #{location.region}, ул. #{location.street}, д. #{location.house_number} кв. #{location.apartment}" %>
             </li>
           <% end %>
         </ul>
