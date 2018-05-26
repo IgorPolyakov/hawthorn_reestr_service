@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchQueriesController < ApplicationController
-  before_action :set_search_query, only: %i[show edit update destroy]
+  before_action :set_search_query, only: %i[show destroy]
 
   # GET /search_queries
   # GET /search_queries.json

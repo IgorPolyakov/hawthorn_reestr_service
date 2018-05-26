@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: %i[show edit update destroy]
+  before_action :set_location, only: %i[show update]
   skip_before_action :verify_authenticity_token
   # GET /locations
   # GET /locations.json
@@ -17,14 +17,10 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
-    respond_to do |format|
-      if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
-        format.json { render json: { message: 'saved' }.to_json, status: :ok }
-      else
-        format.html { render :edit }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
+    if @location.update(location_params)
+      render json: { message: 'saved' }.to_json, status: :ok
+    else
+      render json: @location.errors, status: :unprocessable_entity
     end
   end
 
