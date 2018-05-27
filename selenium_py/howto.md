@@ -38,6 +38,7 @@ python3 query_sender.py -v -http -q $DATA
 
 ## Пожелания
 В дальнейшем хотелось бы избавиться от поля "location":
+```
 [ 
   {
     "id": "5b04fd51839be764fecd2a0d",
@@ -53,4 +54,5 @@ python3 query_sender.py -v -http -q $DATA
     "status": "в обработке",
     "date": "27.05.2018 22:07"
   }
+  ```
 ]
