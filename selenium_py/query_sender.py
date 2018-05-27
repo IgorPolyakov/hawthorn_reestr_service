@@ -9,8 +9,8 @@ import sys
 import json
 import models
 import argparse
-import datetime
 
+from datetime import datetime
 from collections import namedtuple
 
 from rosreestr import base_url
@@ -43,7 +43,7 @@ parser = argparse.ArgumentParser(description='Welcome to the help for query send
 parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display.")
 parser.add_argument("-d", "--debug", dest='debug', action='store_true', help="Disable send statement to server.")
 parser.add_argument("-t", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
-parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"17"}]',
+parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"19"}]',
 																			help="Query for search. support only json format.")
 parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/send_query.json.")
 parser.add_argument("-http", "--http", dest='onHttp', action='store_true', help="Send result to http url.")
@@ -80,108 +80,119 @@ try:
 except TimeoutException:
 	terminate('ERROR', 'Main menu page was not loaded')
 
-try:
-	btn_search = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
-except TimeoutException:
-	terminate('ERROR', 'Searh menu page was not loaded')
 
 query_results = []
-i = 0
-#Test for one query
-if not querys[i].use_kdastr is None:
-	print("do not work use_kdastr, coming soon...")
+for i in range(len(querys)):
+	try:
+		btn_search = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
+	except TimeoutException:
+		terminate('ERROR', 'Searh menu page was not loaded')
+	#Test for one query
+	if not querys[i].use_kdastr is None:
+		print("do not work use_kdastr, coming soon...")
 
-if not querys[i].kdastr_id is None:
-	print("do not work kadastr_id, coming soon...")
+	if not querys[i].kdastr_id is None:
+		print("do not work kadastr_id, coming soon...")
 
-if not querys[i].region is None:
-	r = browser.find_element_by_xpath(Query.region)
-	r.send_keys(querys[i].region)
-	time.sleep(3) #for testing
-	r.send_keys(Keys.ENTER)
+	if not querys[i].region is None:
+		r = browser.find_element_by_xpath(Query.region)
+		r.send_keys(querys[i].region)
+		time.sleep(4) #for testing
+		r.send_keys(Keys.ENTER)
 
-if not querys[i].district is None:
-	d = browser.find_element_by_xpath(Query.district)
-	d.send_keys(querys[i].district)
-	time.sleep(2) #for testing
-	d.send_keys(Keys.ENTER)
+	if not querys[i].district is None:
+		d = browser.find_element_by_xpath(Query.district)
+		d.send_keys(querys[i].district)
+		time.sleep(2) #for testing
+		d.send_keys(Keys.ENTER)
 
-if not querys[i].populated_area is None:
-	p = browser.find_element_by_xpath(Query.populated_area)
-	p.send_keys(querys[i].populated_area)
-	time.sleep(2) #for testing
-	p.send_keys(Keys.ENTER)
+	if not querys[i].populated_area is None:
+		p = browser.find_element_by_xpath(Query.populated_area)
+		p.send_keys(querys[i].populated_area)
+		time.sleep(2) #for testing
+		p.send_keys(Keys.ENTER)
 
-if not querys[i].street_type is None:
-	st = browser.find_element_by_xpath(Query.street_type)
-	st.send_keys(querys[i].street_type)
-	time.sleep(2) #for testing
-	st.send_keys(Keys.ENTER)
+	if not querys[i].street_type is None:
+		st = browser.find_element_by_xpath(Query.street_type)
+		st.send_keys(querys[i].street_type)
+		time.sleep(2) #for testing
+		st.send_keys(Keys.ENTER)
 
-if not querys[i].street_name is None:
-	browser.find_element_by_xpath(Query.street_name).send_keys(querys[i].street_name)
-	time.sleep(0.5) #for testing
+	if not querys[i].street_name is None:
+		browser.find_element_by_xpath(Query.street_name).send_keys(querys[i].street_name)
+		time.sleep(0.5) #for testing
 
-if not querys[i].house_number is None:
-	browser.find_element_by_xpath(Query.house_number).send_keys(str(querys[i].house_number))
-	time.sleep(0.5) #for testing
+	if not querys[i].house_number is None:
+		browser.find_element_by_xpath(Query.house_number).send_keys(str(querys[i].house_number))
+		time.sleep(0.5) #for testing
 
-if not querys[i].apartment is None:
-	browser.find_element_by_xpath(Query.apartment).send_keys(str(querys[i].apartment))
-	time.sleep(0.5) #for testing
+	if not querys[i].apartment is None:
+		browser.find_element_by_xpath(Query.apartment).send_keys(str(querys[i].apartment))
+		time.sleep(0.5) #for testing
 
-btn_search.click()
-btn_search.click()
+	btn_search.click()
+	btn_search.click()
 
-try:
-	row = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.row_result)))
-	row.click()
-except TimeoutException:
-	terminate('ERROR', 'Searh result page was not loaded or not found query')
+	try:
+		row = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.row_result)))
+		row.click()
+	except TimeoutException:
+		terminate('ERROR', 'Searh result page was not loaded or not found query')
 
-sys.exit("TESTING") #for test
 
-try:
-	btn_send = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
-except TimeoutException:
-	terminate('ERROR', 'Somthing wrong')
+	if args.debug:
+		terminate('INFO', 'Debug mode ON, work is done')
 
-if args.debug:
-	terminate('INFO', 'Debug mode ON, work is done')
+	try:
+		btn_send = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
+	except TimeoutException:
+		terminate('ERROR', 'Somthing wrong')
 
-#main_window_handle = None
-#while not main_window_handle:
-#    main_window_handle = browser.current_window_handle
+	#main_window_handle = None
+	#while not main_window_handle:
+	#    main_window_handle = browser.current_window_handle
 
-btn_send.click()
-btn_send.click()
+	btn_send.click()
+	btn_send.click()
 
-query_result = models.QueryResult()
+	query_result = models.QueryResult()
 
-#signin_window_handle = None
-#while not signin_window_handle:
-#    for handle in browser.window_handles:
-#        if handle != main_window_handle:
-#            signin_window_handle = handle
-#            break
+	for handle in browser.window_handles:
+		browser.switch_to_window(handle)
+		try:
+			s_uid = WebDriverWait(browser, 1).until(EC.presence_of_element_located((By.XPATH, Sender.search_uid)))
+			query_result.search_uid = s_uid.text
+			query_result.id = querys[i].id
+			query_result.date = datetime.today().strftime("%d.%m.%Y %H:%M")
+			query_results.append(query_result)
+			time.sleep(1)
+			browser.find_element_by_xpath(Sender.btn_done).click()
+		except TimeoutException:
+			print("[INFO] Testing for!")
 
-#browser.switch_to_window(Sender.popup)
 
-#browser.switch_to_window(signin_window_handle)
-query_result.search_uid = browser.find_element_by_xpath(Sender.search_uid).text
-query_result.id = querys[i].id
-query_result.date = datetime.strftime("%d.%m.%Y %H:%M")
-query_results.append(query_result)
-print(query_result)
-browser.find_element_by_xpath(Sender.btn_done).click()
-#browser.switch_to_default_content()
+	browser.switch_to_default_content()
 
-try:
-	retry = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_new_query)))
-	retry.click()
-except TimeoutException:
-	terminate('ERROR', 'Searh menu page was not loaded')
+	time.sleep(5)
 
+	try:
+		search_estates = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, MainMenu.search_estates)))
+		search_estates.click()
+	except TimeoutException:
+		terminate('ERROR', 'Main menu page was not loaded')
+
+	# try:
+	# 	btn_retry = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_new_query)))
+	# 	btn_retry.click()
+	# except TimeoutException:
+	# 	terminate('ERROR', 'Searh menu page was not loaded')
+	# time.sleep(1)
+	# try:
+	# 	btn_clear = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_clear)))
+	# 	btn_clear.click()
+	# except TimeoutException:
+	# 	terminate('ERROR', 'Searh menu page was not loaded')
+	# time.sleep(1)
 
 json_string = json.dumps(query_results,default=obj_dict,sort_keys=True,indent=4)
 print(json_string)
