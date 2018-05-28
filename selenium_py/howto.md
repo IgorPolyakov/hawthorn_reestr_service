@@ -5,7 +5,34 @@ python3 query_sender.py -v -http -q $DATA
 ```
 где $DATA : 
 ```
-'[{"id":1,"id_location":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"26"},{"id":1,"id_location":2,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"29"},{"id":1,"id_location":3,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"27"}]'
+'[
+   {
+      "id":1,
+      "id_location":1,
+      "kdastr_id":null,
+      "use_kdastr":false,
+      "region":"Томская область",
+      "district":null,
+      "populated_area":null,
+      "street_type":"Улица",
+      "street_name":"Красноармейская",
+      "house_number":"148",
+      "apartment":"26"
+   },
+   {
+      "id":1,
+      "id_location":2,
+      "kdastr_id":null,
+      "use_kdastr":false,
+      "region":"Томская область",
+      "district":null,
+      "populated_area":null,
+      "street_type":"Улица",
+      "street_name":"Красноармейская",
+      "house_number":"148",
+      "apartment":"29"
+   }
+]'
 ```
 
 ## Пример ответа:
