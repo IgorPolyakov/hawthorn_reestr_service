@@ -64,21 +64,23 @@ class QueryResult:
 		self.location_id=""
 		self.search_uid = ""
 		self.status = ""
-		self.date = ""
+		self.date = None
+		self.date_request = None
+		self.zip_url = None
+		self.root_path = None
 	def setStatus(self,id_status):
 		self.status = status[id_status]
 	def sendData(self,id_status=0):
 		self.status = status[id_status]
 		data = self.prepareForCS();
 		print("[INFO] Send data: %s"%(data))
-		print(args_onHttp)
 		if args_onHttp:
 			s_http.setUrl(self.id,self.location_id)
 			s_http.send(data)
 		if args_onFile:
 			if not os.path.exists('bin'):
 				os.makedirs('bin')
-			file = open('bin/query_sender.json', 'ab')
+			file = open('bin/result.json', 'ab')
 			file.write(data.encode('utf-8'))
 	def prepareForCS(self):
 		q = QueryProxy()

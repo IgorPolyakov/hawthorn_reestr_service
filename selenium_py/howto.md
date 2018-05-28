@@ -14,10 +14,13 @@ python3 query_sender.py -v -http -q $DATA
 {
   "location": {
     "id": "5b04fd51839be764fecd2a0d",
-    "loacation_id": "5b04fd51839be764fecd2a0e",
-    "search_uid": "80-39866427",
+    "id_location": "5b04fd51839be764fecd2a0e",
+    "search_uid": "80-39089153",
+    "date": "27.05.2018 22:07",
+    "date_request": null,
     "status": "в обработке",
-    "date": "27.05.2018 22:07"
+    "zip_url": null,
+    "root_path": null
   }
 }
 
@@ -36,7 +39,7 @@ python3 query_sender.py -v -http -q $DATA
 }
 ```
 
-## Пожелания
+## [deprecated] Пожелания - in review
 В дальнейшем хотелось бы избавиться от поля "location":
 ```
 [ 
@@ -56,3 +59,45 @@ python3 query_sender.py -v -http -q $DATA
   }
   ```
 ]
+
+# Загрузка zip из росреестра
+## Пример запроса:
+```
+python3 zip_loader.py -v -http -q $DATA
+```
+где $DATA : 
+```
+[{"id":1,"id_location":1,"search_uid":"80-39089153"}]
+```
+
+## Пример ответа:
+В случае успеха хотя бы одной локации в ответ будет высылаться следующая нагрузка (на url по смене статусов):
+```
+{
+  "location": {
+    "id": "5b04fd51839be764fecd2a0d",
+    "id_location": "5b04fd51839be764fecd2a0e",
+    "search_uid": "80-39089153",
+    "date": null,
+    "date_request": "28.05.2018 22:07",
+    "status": "готово",
+    "zip_url": "http//",
+    "root_path": "/home/user/2i.zip"
+  }
+}
+```
+где:
+* поле status:
+‘в обработке’ - запрос отправлен успешно
+[deprecated] ‘ошибка’ - что то пошло не так, и данную локацию надо будет перезапросить, 
+
+В случае если все наебнулось и не дошло даже до запроса, ответ будет высылаться следующая нагрузка (на url "сам придумай какой"):
+```
+{
+    "error_id": 500,
+    "error_text": "suffer bitch" 
+}
+```
+
+## Пожелания
+смотри выше
