@@ -8,9 +8,10 @@ Requires=mongod.service
 Type=simple
 User=fox
 Group=fox
-WorkingDirectory=/home/fox/hawthorn_reestr_service/current/rails_backend                                        
+WorkingDirectory=/home/fox/hawthorn_reestr_service/current
 Environment=RAILS_ENV=production
-ExecStart=/home/fox/.rbenv/shims/bundle exec rails server -e production -p 9999                      
+Environment=PATH=/home/fox/bin:/home/fox/.local/bin:/home/fox/.rbenv/bin:/home/fox/.rbenv/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/fox/thirdparty
+ExecStart=/home/fox/.rbenv/shims/bundle exec rails server -p 9999                      
 Restart=always
 TimeoutSec=15
 
