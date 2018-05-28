@@ -6,7 +6,7 @@ class SearchQueriesController < ApplicationController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    @search_queries = SearchQuery.all
+    @search_queries = SearchQuery.order_by(:created_at.desc)
   end
 
   # GET /search_queries/1
