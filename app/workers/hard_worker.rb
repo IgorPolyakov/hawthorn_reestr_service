@@ -19,7 +19,7 @@ class HardWorker
       house_number: location.house_number, # "148",
       apartment: location.apartment # "26"
     }.to_json
-    text = "python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q [#{data}]"
+    text = "python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data}]'"
     system(text)
   end
 end
