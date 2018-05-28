@@ -14,10 +14,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 # gem 'bcrypt', '~> 3.1.7'
-gem 'sidekiq'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'mongoid'
+gem 'sidekiq'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

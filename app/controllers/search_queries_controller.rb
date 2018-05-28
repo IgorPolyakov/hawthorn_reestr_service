@@ -60,11 +60,11 @@ class SearchQueriesController < ApplicationController
       .permit(
         :title,
         locations_attributes: %i[
-          cadastr_id
+          kdastr_id
           region
           district
           populated_area
-          street
+          street_type
           street_name
           house_number
           apartment

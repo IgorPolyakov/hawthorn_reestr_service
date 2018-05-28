@@ -4,6 +4,13 @@
 
 * * *
 
+## Used tech
+- RAILS 5
+- MONGO DB 3
+- SELENIUM
+- REDIS
+
+
 ## Packets for reestr
 
   description:
@@ -12,7 +19,7 @@
 
   description:
 ```
-  searching: 
+  searching:
   {
      required id: uint32
      required serarch_type: string
@@ -20,9 +27,9 @@
   }
 ```
 ```
-  query: 
+  query:
   {
-     optional сadastr_id: uint32
+     optional kdastr_id: uint32
      optional useg_сadastr: bool
      required region: string
      optional district: string
@@ -37,7 +44,7 @@
 
   description:
 ```
-  answer: 
+  answer:
   {
       required id: uint32
       repeated search_uid: uint32
@@ -49,16 +56,16 @@
 
   description: maby separate
 ```
-  realty : 
+  realty :
   {
       required search_uid: uint32
       required date_request: yyyy-dd-MMThh:mm:ss (or some like this)
       required date_response: yyyy-dd-MMThh:mm:ss (or some like this)
-      optional сadastr_id: uint32
+      optional kdastr_id: uint32
       required region: string
       optional district: string
       optional populated_area: string
-      required street: string
+      required street_type: string
       required street_name: string
       required house_number: string
       required apartment: string
@@ -69,7 +76,7 @@
 
   description:
 ```
-  task: 
+  task:
   {
       required task_uid: uint32
       repeated realtys: realty
@@ -81,3 +88,27 @@
   token: c5793610-b33b-476f-bebf-53a0f1366383
 
   =====================================================
+
+## Work with API: How to update status on location
+
+```
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X PATCH -d '{"location":{"status":"готово"}}' http://127.0.0.1:3000/search_queries/5b06edc86135e43b1b91b858/locations/5b06edc86135e43b1b91b859
+```
+
+`127.0.0.1` - adress
+
+`3000` - port
+
+`search_queries/5b06edc86135e43b1b91b858/locations/5b06edc86135e43b1b91b859` - url
+
+`5b06edc86135e43b1b91b858` - search_querie id
+
+`5b06edc86135e43b1b91b859` - location id
+
+`{"location":{"status":"готово"}}` - data
+
+`PATCH` - HTTP request method
+
+status may be ``готово`` or `в обработке` .
+
+correct answer is: `{"message":"saved"}`

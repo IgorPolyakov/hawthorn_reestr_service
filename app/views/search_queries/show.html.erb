@@ -7,7 +7,7 @@
   <strong>Адрес:</strong>
 <ul>
   <% @search_query.locations.each do |location| %>
-    <li><%= "г. #{location.region}, ул. #{location.street}, д. #{location.house_number} кв. #{location.apartment}" %></li>
+    <li><%= "г. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %></li>
     <%= link_to 'Детали', search_query_location_path(@search_query, location) %>
   <% end %>
 </ul>

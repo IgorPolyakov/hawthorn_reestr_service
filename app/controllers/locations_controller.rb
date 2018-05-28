@@ -37,7 +37,8 @@ class LocationsController < ApplicationController
     params
       .require(:location)
       .permit(
-        :status
+        :status,
+        :search_uid
       )
   end
 end
