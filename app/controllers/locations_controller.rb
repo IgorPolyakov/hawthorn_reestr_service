@@ -38,7 +38,8 @@ class LocationsController < ApplicationController
       .require(:location)
       .permit(
         :status,
-        :search_uid
+        :search_uid,
+        :zip_url
       )
   end
 end
