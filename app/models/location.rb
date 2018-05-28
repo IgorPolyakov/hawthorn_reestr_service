@@ -4,7 +4,7 @@ class Location
   include Mongoid::Document
 
   field :kdastr_id, type: Integer # optional
-  field :use_kdastr, type: Boolean # optional
+  field :use_kdastr, type: Boolean, default: false # optional
   field :region, type: String
   field :district, type: String # optional
   field :populated_area, type: String # optional
@@ -13,7 +13,7 @@ class Location
   field :house_number, type: String
   field :apartment, type: String
   field :zip_url, type: String
-  field :status, type: String, default: 'в обработке'
+  field :status, type: String, default: 'запуск'
   field :search_ui, type: Integer
 
   embedded_in :search_query

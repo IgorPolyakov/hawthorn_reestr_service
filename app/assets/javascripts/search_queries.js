@@ -22,6 +22,9 @@ function status() {
       else if (val === "в обработке") {
         $(ele).addClass('badge-warning');
       }
+      else if (val === "запуск") {
+        $(ele).addClass('badge-light');
+      }
       else   {
         $(ele).addClass('badge-danger');
       }
