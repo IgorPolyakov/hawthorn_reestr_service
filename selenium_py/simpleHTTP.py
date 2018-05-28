@@ -14,7 +14,7 @@ class StatusQuery():
 
 	def setUrl(self,id_search,id_query):
 		self.url = "http://80.211.41.148:9999/search_queries/%s/locations/%s"%(id_search,id_query)
-		print(self.url)
+		print("[INFO] Send to: %s"%(self.url))
 
 	def setPayload(self,id_status):
 		self.payload = '{"location":{"status":"%s"}}' % (self.status[id_status])

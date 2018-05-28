@@ -16,6 +16,8 @@ args_onFile = False
 
 status = ["в обработке","готово","ошибка"]
 
+s_http = http()
+
 """Json to obj helper"""
 def _json_object_hook(d): 
 	return namedtuple('X', d.keys())(*d.values())
@@ -67,22 +69,25 @@ class QueryResult:
 		self.status = status[id_status]
 	def sendData(self,id_status=0):
 		self.status = status[id_status]
-		data = prepareForCS();
+		data = self.prepareForCS();
+		print("[INFO] Send data: %s"%(data))
+		print(args_onHttp)
 		if args_onHttp:
-			http.setUrl(self.id,self.location_id)
-			http.send(data)
+			s_http.setUrl(self.id,self.location_id)
+			s_http.send(data)
 		if args_onFile:
 			if not os.path.exists('bin'):
 				os.makedirs('bin')
 			file = open('bin/query_sender.json', 'ab')
 			file.write(data.encode('utf-8'))
 	def prepareForCS(self):
-		q = QueryProxy(self)
+		q = QueryProxy()
+		q.location = self
 		return json.dumps(q,default=obj_dict,sort_keys=True,indent=4)
 
-class QueryProxy(QueryResult):
+class QueryProxy():
 	"""it contains data about QueryProxy"""
-	def __init__(self,query_c):
-		super(QueryProxy,self).__init__()
-		self.location = query_c
+	def __init__(self):
+		super().__init__()
+	location={}
 

@@ -54,12 +54,23 @@ parser.add_argument("-http", "--http", dest='onHttp', action='store_true', help=
 
 args = parser.parse_args()
 
-models.args_onHttp = args.onFile
-models.args_onFile = args.onHttp
+if args.onHttp:
+	models.args_onHttp = True
+
+if args.onFile:
+	models.args_onFile = True
 
 token = args.token.split('-')
 if len(token) != 5 :
 	terminate('ERROR','Wrong token')
+
+# q_r = models.QueryResult()
+# q_r.id = "5b04fd51839be764fecd2a0d"
+# q_r.location_id = "5b04fd51839be764fecd2a0e"
+# q_r.search_uid = "3"
+# q_r.date = datetime.today().strftime("%d.%m.%Y %H:%M")
+# q_r.sendData(2)
+# sys.exit()
 
 # Parse JSON into an object with attributes corresponding to dict keys.
 querys = models.jsonToobj(args.query)
@@ -172,7 +183,6 @@ for i in range(len(querys)):
 			query_result.id = querys[i].id
 			query_result.loacation_id = querys[i].loacation_id
 			query_result.search_uid = s_uid.text
-			query_result.setStatus(0) # enum?
 			query_result.date = datetime.today().strftime("%d.%m.%Y %H:%M")
 			query_results.append(query_result)
 			query_result.sendData()
