@@ -8,9 +8,12 @@
 <ul>
   <% @search_query.locations.each do |location| %>
     <li><%= "г. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %></li>
-    <%= link_to 'Детали', search_query_location_path(@search_query, location) %>
+    <div class="btn-group" role="group">
+      <%= link_to 'Детали', search_query_location_path(@search_query, location), class: 'btn btn-outline-info'  %>
+      <%= link_to 'Архив', '#', class: 'btn btn-outline-primary' %>
+    </div>
   <% end %>
 </ul>
 </p>
 
-<%= link_to 'Назад', search_queries_path %>
+<%= link_to 'Назад', search_queries_path, class: 'btn btn-outline-success' %>

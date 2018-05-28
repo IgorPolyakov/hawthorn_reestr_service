@@ -1,14 +1,13 @@
-<span class="badge"><%= @location.status %></span>
+<p> <span class="badge"><%= @location.status %></span> </p>
 <p>ID: <%= @location.id %></p>
-<p>Идентификатор Cadastr <%= @location.kdastr_id %></p>
-<p>Область <%= @location.region %></p>
-<p>Район <%= @location.district %></p>
-<p>Земельный участок <%= @location.populated_area %></p>
-<p>Тип улицы <%= @location.street_type %></p>
-<p>Название улицы <%= @location.street_name %></p>
-<p>Номер дома <%= @location.house_number %></p>
-<p>Квартира <%= @location.apartment %></p>
-<p>Zip Url <%= @location.zip_url %></p>
-<p>Положение дел <%= @location.status %></p>
-<p>Поиск Ui <%= @location.search_ui %></p>
-<%= link_to "Назад", :back, class: 'btn btn-outline-success' %>
+<p>Кадастр - <strong><%= @location.kdastr_id %></strong></p>
+<p>Область - <strong><%= @location.region %></strong></p>
+<p>Район - <strong><%= @location.district %></strong></p>
+<p>Земельный участок - <strong><%= @location.populated_area %></strong></p>
+<p>Тип улицы - <strong><%= @location.street_type %></strong></p>
+<p>Название улицы - <strong><%= @location.street_name %></strong></p>
+<p>Номер дома - <strong><%= @location.house_number %></strong></p>
+<p>Квартира - <strong><%= @location.apartment %></strong></p>
+<p>Поиск Ui - <strong><%= @location.search_ui %></strong></p>
+<p>Скачать - <%= link_to 'Архив', '#', class: 'btn btn-outline-primary' %></p>
+<%= link_to "Назад", search_query_path(@search_query), class: 'btn btn-outline-success' %>
