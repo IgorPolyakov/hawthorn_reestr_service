@@ -62,7 +62,7 @@
       </div>
 
       <div class="form-group">
-        <%= form.add_nested_fields_link :locations %>
+        <%= form.add_nested_fields_link :locations, 'Добавить новый адрес' %>
         |
         <%= location_form.remove_nested_fields_link %>
       </div>
@@ -71,6 +71,6 @@
   <br>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Создать запрос' %>
   </div>
 <% end %>
