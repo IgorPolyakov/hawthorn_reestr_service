@@ -25,8 +25,8 @@ set :forward_agent, true # SSH forward_agent.
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
-set :shared_dirs, fetch(:shared_dirs, []).push('rails_backend/public/assets')
-set :shared_files, fetch(:shared_files, []).push('rails_backend/config/mongoid.yml', 'rails_backend/config/master.key')
+set :shared_dirs, fetch(:shared_dirs, []).push('public/assets')
+set :shared_files, fetch(:shared_files, []).push('config/mongoid.yml', 'config/master.key')
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
@@ -44,8 +44,8 @@ end
 task :setup do
   command %(rbenv install 2.5.1 --skip-existing)
   command %(gem install bundler)
-  command %(touch "#{fetch(:shared_path)}/rails_backend/config/mongoid.yml")
-  command %(touch "#{fetch(:shared_path)}/rails_backend/config/master.key")
+  command %(touch "#{fetch(:shared_path)}/config/mongoid.yml")
+  command %(touch "#{fetch(:shared_path)}/config/master.key")
 end
 
 desc 'Deploys the current version to the server.'
@@ -57,7 +57,6 @@ task :deploy do
     # instance of your project.
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
-    command %(cd rails_backend)
     invoke :'bundle:install'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
