@@ -8,6 +8,7 @@ import os
 import sys
 import json
 import models
+from simpleHTTP import StatusQuery as http
 import argparse
 
 from datetime import datetime
@@ -34,7 +35,10 @@ def terminate(t,m):
 	browser.quit()
 	if args.virtual:
 		display.stop()
-	sys.exit("[%s] %s"%(t,m)) 
+	sys.exit("[%s] %s"%(t,m))
+
+	# if args.onHttp:
+	# 	http.sendError("","")
 
 def obj_dict(obj):
 	return obj.__dict__
@@ -43,12 +47,15 @@ parser = argparse.ArgumentParser(description='Welcome to the help for query send
 parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display.")
 parser.add_argument("-d", "--debug", dest='debug', action='store_true', help="Disable send statement to server.")
 parser.add_argument("-t", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
-parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"19"}]',
+parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"loacation_id":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"19"}]',
 																			help="Query for search. support only json format.")
 parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/send_query.json.")
 parser.add_argument("-http", "--http", dest='onHttp', action='store_true', help="Send result to http url.")
 
 args = parser.parse_args()
+
+models.args_onHttp = args.onFile
+models.args_onFile = args.onHttp
 
 token = args.token.split('-')
 if len(token) != 5 :
@@ -86,6 +93,7 @@ for i in range(len(querys)):
 	try:
 		btn_search = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
 	except TimeoutException:
+		sendData()
 		terminate('ERROR', 'Searh menu page was not loaded')
 	#Test for one query
 	if not querys[i].use_kdastr is None:
@@ -161,10 +169,13 @@ for i in range(len(querys)):
 		browser.switch_to_window(handle)
 		try:
 			s_uid = WebDriverWait(browser, 1).until(EC.presence_of_element_located((By.XPATH, Sender.search_uid)))
-			query_result.search_uid = s_uid.text
 			query_result.id = querys[i].id
+			query_result.loacation_id = querys[i].loacation_id
+			query_result.search_uid = s_uid.text
+			query_result.setStatus(0) # enum?
 			query_result.date = datetime.today().strftime("%d.%m.%Y %H:%M")
 			query_results.append(query_result)
+			query_result.sendData()
 			time.sleep(1)
 			browser.find_element_by_xpath(Sender.btn_done).click()
 		except TimeoutException:
@@ -198,15 +209,6 @@ json_string = json.dumps(query_results,default=obj_dict,sort_keys=True,indent=4)
 print(json_string)
 # upload result to app or file
 # start script for repack zip task
-
-if args.onFile:
-	if not os.path.exists('bin'):
-		os.makedirs('bin')
-	file = open('bin/query_sender.json', 'wb')
-	file.write(json_string.encode('utf-8'))
-
-if args.onHttp:
-	print("[INFO] This option do not work, coming soon...")
 
 browser.quit()
 
