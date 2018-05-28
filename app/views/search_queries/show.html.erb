@@ -7,7 +7,11 @@
   <strong>Адрес:</strong>
 <ul>
   <% @search_query.locations.each do |location| %>
-    <li><%= "г. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %></li>
+    <li>
+      <span class="badge"><%= location.status %></span>
+      <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
+    </li>
+    <br>
     <div class="btn-group" role="group">
       <%= link_to 'Детали', search_query_location_path(@search_query, location), class: 'btn btn-outline-info'  %>
       <%= link_to 'Архив', '#', class: 'btn btn-outline-primary' %>
