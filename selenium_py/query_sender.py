@@ -104,7 +104,6 @@ for i in range(len(querys)):
 	try:
 		btn_search = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
 	except TimeoutException:
-		sendData()
 		terminate('ERROR', 'Searh menu page was not loaded')
 	#Test for one query
 	if not querys[i].use_kdastr is None:

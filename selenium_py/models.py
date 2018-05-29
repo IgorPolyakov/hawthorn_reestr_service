@@ -100,5 +100,18 @@ class Sender(object):
 		self.search_uid = search_uid
 		self.status = status
 
+class SearchHome(object):
+	"""docstring for SearchHome"""
+	def __init__(self):
+		super().__init__()
+		self.kdastr_id = None
+		self.full_address = None
+		self.object_type = None
+		self.area = None
+		self.category = None
+		self.legal_usage_type = None
+		self.usage_type = None
+		
+
 		
 
