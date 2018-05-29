@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HardWorker
+class QuerySenderWorker
   include Sidekiq::Worker
 
   def perform(search_query_id, location_id)
