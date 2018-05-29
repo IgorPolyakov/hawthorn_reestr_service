@@ -6,20 +6,22 @@ class HardWorker
   def perform(search_query_id, location_id)
     search_query = SearchQuery.find(search_query_id)
     location = search_query.locations.find(location_id)
-    data = {
-      id: search_query_id,
-      id_location: location_id,
-      kdastr_id: location.kdastr_id, # null,
-      use_kdastr: location.use_kdastr, # false,
-      region: location.region, # "Томская область",
-      district: location.district, # null,
-      populated_area: location.populated_area, # null,
-      street_type: location.street_type, # "Улица",
-      street_name: location.street_name, # "Красноармейская",
-      house_number: location.house_number, # "148",
-      apartment: location.apartment # "26"
-    }.to_json
-    text = "python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data}]'"
+    data = {}
+
+    data[:id] = search_query_id
+    data[:location_id] = location_id
+    data[:kdastr_id] = location.kdastr_id == '' ? nil : location.kdastr_id # null
+    data[:use_kdastr] = location.use_kdastr == '' ? nil : location.use_kdastr # false
+    data[:region] = location.region == '' ? nil : location.region # "Томская область"
+    data[:district] = location.district == '' ? nil : location.district # null
+    data[:populated_area] = location.populated_area == '' ? nil : location.populated_area # null
+    data[:street_type] = location.street_type == '' ? nil : location.street_type # "Улица"
+    data[:street_name] = location.street_name == '' ? nil : location.street_name # "Красноармейская"
+    data[:house_number] = location.house_number == '' ? nil : location.house_number # "148"
+    data[:apartment] = location.apartment == '' ? nil : location.apartment # "26"
+
+    text = "python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data.to_json}]'"
+    pp text
     system(text)
   end
 end
