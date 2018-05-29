@@ -15,6 +15,7 @@ class Location
   field :zip_url, type: String
   field :status, type: String, default: 'запуск'
   field :search_ui, type: Integer
+  field :root_path, type: String
 
   embedded_in :search_query
   # validates :region, :street_type, :street_name, :house_number, :apartment, :zip_url, presence: true

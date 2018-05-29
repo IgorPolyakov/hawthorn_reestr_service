@@ -39,7 +39,8 @@ class LocationsController < ApplicationController
       .permit(
         :status,
         :search_uid,
-        :zip_url
+        :zip_url,
+        :root_path
       )
   end
 end
