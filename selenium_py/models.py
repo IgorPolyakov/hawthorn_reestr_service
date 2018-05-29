@@ -84,12 +84,21 @@ class QueryResult:
 			file.write(data.encode('utf-8'))
 	def prepareForCS(self):
 		q = QueryProxy()
-		q.location = self
+		q.location = Sender(self.search_uid,self.status)
 		return json.dumps(q,default=obj_dict,sort_keys=True,indent=4)
 
-class QueryProxy():
+class QueryProxy:
 	"""it contains data about QueryProxy"""
 	def __init__(self):
 		super().__init__()
 	location={}
+
+class Sender(object):
+	"""docstring for Sender"""
+	def __init__(self, search_uid,status):
+		super().__init__()
+		self.search_uid = search_uid
+		self.status = status
+
+		
 
