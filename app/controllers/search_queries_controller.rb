@@ -70,7 +70,7 @@ class SearchQueriesController < ApplicationController
           apartment
           zip_url
           status
-          search_ui
+          search_uid
         ]
       )
   end

@@ -14,7 +14,7 @@ class Location
   field :apartment, type: String
   field :zip_url, type: String
   field :status, type: String, default: 'запуск'
-  field :search_ui, type: Integer
+  field :search_uid, type: Integer
   field :root_path, type: String
 
   embedded_in :search_query
