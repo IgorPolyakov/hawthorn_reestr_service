@@ -42,7 +42,7 @@ def obj_dict(obj):
 parser = argparse.ArgumentParser(description='Welcome to the help for zip loader v.1.')
 parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display.")
 parser.add_argument("-t", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
-parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"id_location":1,"search_uid":"80-39089153"}]', help="As a query, specify the search_uid. The query must be in the jason.")
+parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"location_id":1,"search_uid":"80-39089153"}]', help="As a query, specify the search_uid. The query must be in the jason.")
 # parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '80-39089153,80-39089149', help="As a query, specify the search_uid. uid separate by ','.")
 parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/result.json.")
 parser.add_argument("-http", "--http", dest='onHttp', action='store_true', help="Send result to http url.")
@@ -107,7 +107,7 @@ for search_uid in search_uids:
 	i = 1
 	my_query = models.QueryResult()
 	my_query.id = search_uid.id
-	my_query.id_location = search_uid.id_location
+	my_query.location_id = search_uid.location_id
 	browser.find_element_by_xpath(ResponseMenu.search_field).send_keys(search_uid.search_uid)
 	browser.find_element_by_xpath(ResponseMenu.search_btn).click()
 

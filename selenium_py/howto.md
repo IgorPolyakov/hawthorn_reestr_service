@@ -3,12 +3,12 @@
 ```
 python3 query_sender.py -v -http -q $DATA
 ```
-где $DATA : 
+где $DATA :
 ```
 '[
    {
       "id":1,
-      "id_location":1,
+      "location_id":1,
       "kdastr_id":null,
       "use_kdastr":false,
       "region":"Томская область",
@@ -21,7 +21,7 @@ python3 query_sender.py -v -http -q $DATA
    },
    {
       "id":1,
-      "id_location":2,
+      "location_id":2,
       "kdastr_id":null,
       "use_kdastr":false,
       "region":"Томская область",
@@ -41,7 +41,7 @@ python3 query_sender.py -v -http -q $DATA
 {
   "location": {
     "id": "5b04fd51839be764fecd2a0d",
-    "id_location": "5b04fd51839be764fecd2a0e",
+    "location_id": "5b04fd51839be764fecd2a0e",
     "search_uid": "80-39089153",
     "date": "27.05.2018 22:07",
     "date_request": null,
@@ -55,31 +55,31 @@ python3 query_sender.py -v -http -q $DATA
 где:
 * поле status:
 ‘в обработке’ - запрос отправлен успешно
-[deprecated] ‘ошибка’ - что то пошло не так, и данную локацию надо будет перезапросить, 
+[deprecated] ‘ошибка’ - что то пошло не так, и данную локацию надо будет перезапросить,
 * поле  search_uid - по этому номеру в дальнейшем я смогу найти какой файл нужно скачать
 
 В случае если все наебнулось и не дошло даже до запроса, ответ будет высылаться следующая нагрузка (на url "сам придумай какой"):
 ```
 {
     "error_id": 500,
-    "error_text": "suffer bitch" 
+    "error_text": "suffer bitch"
 }
 ```
 
 ## [deprecated] Пожелания - in review
 В дальнейшем хотелось бы избавиться от поля "location":
 ```
-[ 
+[
   {
     "id": "5b04fd51839be764fecd2a0d",
-    "loacation_id": "5b04fd51839be764fecd2a0e",
+    "location_id": "5b04fd51839be764fecd2a0e",
     "search_uid": "80-39866427",
     "status": "в обработке",
     "date": "27.05.2018 22:07"
   },
   {
     "id": "5b04fd51839be764fecd2a0d",
-    "loacation_id": "5b04fd51839be764fecd2a0e",
+    "location_id": "5b04fd51839be764fecd2a0e",
     "search_uid": "80-39866427",
     "status": "в обработке",
     "date": "27.05.2018 22:07"
@@ -92,9 +92,9 @@ python3 query_sender.py -v -http -q $DATA
 ```
 python3 zip_loader.py -v -http -q $DATA
 ```
-где $DATA : 
+где $DATA :
 ```
-[{"id":1,"id_location":1,"search_uid":"80-39089153"}]
+[{"id":1,"location_id":1,"search_uid":"80-39089153"}]
 ```
 
 ## Пример ответа:
@@ -103,7 +103,7 @@ python3 zip_loader.py -v -http -q $DATA
 {
   "location": {
     "id": "5b04fd51839be764fecd2a0d",
-    "id_location": "5b04fd51839be764fecd2a0e",
+    "location_id": "5b04fd51839be764fecd2a0e",
     "search_uid": "80-39089153",
     "date": null,
     "date_request": "28.05.2018 22:07",
@@ -116,13 +116,13 @@ python3 zip_loader.py -v -http -q $DATA
 где:
 * поле status:
 ‘в обработке’ - запрос отправлен успешно
-[deprecated] ‘ошибка’ - что то пошло не так, и данную локацию надо будет перезапросить, 
+[deprecated] ‘ошибка’ - что то пошло не так, и данную локацию надо будет перезапросить,
 
 В случае если все наебнулось и не дошло даже до запроса, ответ будет высылаться следующая нагрузка (на url "сам придумай какой"):
 ```
 {
     "error_id": 500,
-    "error_text": "suffer bitch" 
+    "error_text": "suffer bitch"
 }
 ```
 
