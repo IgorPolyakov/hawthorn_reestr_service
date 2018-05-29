@@ -15,5 +15,7 @@ class ZipLoaderWorker
     text = "python3 #{Rails.root.join('selenium_py', 'zip_loader.py')} -v -http -q '[#{data.to_json}]'"
     pp text
     system(text)
+    status = SearchQuery.find(search_query_id).locations.find(location_id).status
+    raise 'something goes wrong' unless status == 'готово'
   end
 end

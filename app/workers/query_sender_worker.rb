@@ -23,5 +23,10 @@ class QuerySenderWorker
     text = "python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data.to_json}]'"
     pp text
     system(text)
+
+    status = SearchQuery.find(search_query_id).locations.find(location_id).status
+    unless (status == 'в обработке') || (status == 'готово')
+      raise 'something goes wrong'
+    end
   end
 end
