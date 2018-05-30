@@ -26,7 +26,7 @@ class QuerySenderWorker
 
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
     unless (status == 'в обработке') || (status == 'готово')
-      raise 'something goes wrong'
+      raise "try to get 'search_uid'"
     end
   end
 end

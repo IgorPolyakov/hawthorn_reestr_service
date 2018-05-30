@@ -16,6 +16,6 @@ class ZipLoaderWorker
     pp text
     system(text)
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
-    raise 'something goes wrong' unless status == 'готово'
+    raise 'wait for zip archive' unless status == 'готово'
   end
 end
