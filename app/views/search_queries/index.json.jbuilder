@@ -16,6 +16,6 @@ json.array! @search_queries do |sq|
     json.apartment location.apartment
     json.zip_url location.zip_url
     json.status location.status
-    json.search_ui location.search_ui
+    json.search_uid location.search_uid
   end
 end

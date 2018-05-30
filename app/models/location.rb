@@ -2,6 +2,7 @@
 
 class Location
   include Mongoid::Document
+  after_save :run_task
 
   field :kdastr_id, type: Integer # optional
   field :use_kdastr, type: Boolean, default: false # optional
@@ -14,10 +15,19 @@ class Location
   field :apartment, type: String
   field :zip_url, type: String
   field :status, type: String, default: 'запуск'
-  field :search_ui, type: Integer
+  field :search_uid, type: Integer
+  field :root_path, type: String
 
   embedded_in :search_query
   # validates :region, :street_type, :street_name, :house_number, :apartment, :zip_url, presence: true
+
+  private
+
+  def run_task
+    if status == 'в обработке'
+      ZipLoaderWorker.perform_async(search_query.id.to_s, id.to_s)
+    end
+  end
 end
 
 # required date_request: yyyy-dd-MMThh:mm:ss (or some like this)

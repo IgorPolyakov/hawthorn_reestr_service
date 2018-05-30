@@ -25,7 +25,7 @@ class SearchQueriesController < ApplicationController
     respond_to do |format|
       if @search_query.save
         @search_query.locations.each do |location|
-          HardWorker.perform_async(@search_query.id.to_s, location.id.to_s)
+          QuerySenderWorker.perform_async(@search_query.id.to_s, location.id.to_s)
         end
         format.html { redirect_to @search_query, notice: 'Search query was successfully created.' }
         format.json { render :show, status: :created, location: @search_query }
@@ -70,7 +70,7 @@ class SearchQueriesController < ApplicationController
           apartment
           zip_url
           status
-          search_ui
+          search_uid
         ]
       )
   end
