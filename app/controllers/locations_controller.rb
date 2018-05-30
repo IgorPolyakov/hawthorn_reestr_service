@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: %i[show update]
+  before_action :set_location, only: %i[show update download]
   skip_before_action :verify_authenticity_token
   # GET /locations
   # GET /locations.json
@@ -21,6 +21,16 @@ class LocationsController < ApplicationController
       render json: { message: 'saved' }.to_json, status: :ok
     else
       render json: @location.errors, status: :unprocessable_entity
+    end
+  end
+
+  def download
+    zip_file = @location.root_path
+    if File.exist? zip_file
+      send_file zip_file, disposition: 'attachment'
+    else
+      flash[:alert] = 'File not found'
+      redirect_to root_path
     end
   end
 

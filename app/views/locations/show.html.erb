@@ -9,5 +9,5 @@
 <p>Номер дома - <strong><%= @location.house_number %></strong></p>
 <p>Квартира - <strong><%= @location.apartment %></strong></p>
 <p>Поиск uid - <strong><%= @location.search_uid %></strong></p>
-<p>Скачать - <%= link_to 'Архив', '#', class: 'btn btn-outline-primary' %></p>
+<p>Скачать - <%= link_to 'Архив', download_search_query_location_path(@location), class: 'btn btn-outline-primary' %></p>
 <%= link_to "Назад", search_query_path(@search_query), class: 'btn btn-outline-success' %>

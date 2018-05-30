@@ -19,7 +19,7 @@
     <br>
     <div class="btn-group" role="group">
       <%= link_to 'Детали', search_query_location_path(@search_query, location), class: 'btn btn-outline-info'  %>
-      <%= link_to 'Архив', '#', class: 'btn btn-outline-primary' %>
+      <%= link_to 'Архив', download_search_query_location_path(@search_query, location), class: 'btn btn-outline-primary' %>
     </div>
   <% end %>
 </ul>
