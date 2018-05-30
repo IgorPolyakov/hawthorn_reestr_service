@@ -1,5 +1,5 @@
 <p> <span class="badge"><%= @location.status %></span> </p>
-<p>ID: <%= @location.id %></p>
+<p>ID: <strong><%= @location.id.to_s %></strong></p>
 <p>Кадастр - <strong><%= @location.kdastr_id %></strong></p>
 <p>Область - <strong><%= @location.region %></strong></p>
 <p>Район - <strong><%= @location.district %></strong></p>
@@ -8,6 +8,6 @@
 <p>Название улицы - <strong><%= @location.street_name %></strong></p>
 <p>Номер дома - <strong><%= @location.house_number %></strong></p>
 <p>Квартира - <strong><%= @location.apartment %></strong></p>
-<p>Поиск Ui - <strong><%= @location.search_uid %></strong></p>
-<p>Скачать - <%= link_to 'Архив', '#', class: 'btn btn-outline-primary' %></p>
+<p>Поиск uid - <strong><%= @location.search_uid %></strong></p>
+<p>Скачать - <%= link_to 'Архив', download_search_query_location_path(@location), class: 'btn btn-outline-primary' %></p>
 <%= link_to "Назад", search_query_path(@search_query), class: 'btn btn-outline-success' %>

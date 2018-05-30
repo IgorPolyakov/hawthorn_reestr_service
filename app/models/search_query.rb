@@ -3,7 +3,6 @@
 class SearchQuery
   include Mongoid::Document
   include Mongoid::Timestamps
-  field :search_uid, type: String
   field :title, type: String
   embeds_many :locations
   accepts_nested_attributes_for :locations
