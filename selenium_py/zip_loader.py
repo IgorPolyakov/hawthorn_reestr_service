@@ -10,7 +10,7 @@ import json
 import argparse
 import models
 
-from zipper import reSaveZip
+import zipper
 from rosreestr import base_url
 from rosreestr import Login
 from rosreestr import MainMenu

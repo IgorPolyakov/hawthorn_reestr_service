@@ -33,7 +33,7 @@ def reSaveZip(fname,query_id,timeout=15):
 			print("[INFO] Wait loading file...%ds!"%(c_t))
 			time.sleep(1)
 			c_t+=1
-		else
+		else:
 			break
 
 	if not os.path.isfile(getZipPath(fname)):
