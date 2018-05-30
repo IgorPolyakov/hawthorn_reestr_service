@@ -112,7 +112,12 @@ class SearchHome(object):
 		self.category = None
 		self.legal_usage_type = None
 		self.usage_type = None
-		
+
+class SearchHomeProxy:
+	"""it contains data about SearchHomeProxy"""
+	def __init__(self,kdastr_id):
+		super().__init__()
+		self.kdastr_id = kdastr_id
 
 		
 

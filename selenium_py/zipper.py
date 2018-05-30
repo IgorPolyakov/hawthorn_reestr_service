@@ -6,8 +6,9 @@ Download prepare zip for CS
 # -*- coding: utf-8 -*-
 
 import os
-# import os.path
+import time
 import subprocess
+# import os.path
 
 
 download_path = os.path.expanduser('~/download')
@@ -22,15 +23,23 @@ def getFilePath(query_id):
 def getZipPath(fname):
 	return download_path+"/"+fname
 
-def reSaveZip(fname,query_id):
+def reSaveZip(fname,query_id,timeout=15):
 	print(getZipPath(fname))
 	print(getFilePath(query_id))
-
+	c_t = 0
 	# os.chdir(download_path)
-	if not os.path.isfile(getZipPath(fname)):
-		print("[ERROR File not found!")
-		return -1 
+	while c_t < timeout:
+		if not os.path.isfile(getZipPath(fname)):
+			print("[INFO] Wait loading file...%ds!"%(c_t))
+			time.sleep(1)
+			c_t+=1
+		else
+			break
 
+	if not os.path.isfile(getZipPath(fname)):
+		print("[ERROR] File not found!")
+		return -1 
+	
 	if not os.path.exists(getFilePath(query_id)):
 	    os.makedirs(getFilePath(query_id))
 
@@ -46,4 +55,4 @@ def reSaveZip(fname,query_id):
 	print("[INFO] Update Mega full pack zip: " +files[0])
 	return files[3]
 
-reSaveZip("Response-80-39089138.zip","39089138")
+#reSaveZip("Response-80-39089138.zip","39089138")
