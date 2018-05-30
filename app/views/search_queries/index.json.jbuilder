@@ -17,5 +17,6 @@ json.array! @search_queries do |sq|
     json.zip_url location.zip_url
     json.status location.status
     json.search_uid location.search_uid
+    json.root_path location.root_path
   end
 end
