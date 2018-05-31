@@ -117,18 +117,21 @@ for i in range(len(querys)):
 		r.send_keys(querys[i].region)
 		time.sleep(4) #for testing
 		r.send_keys(Keys.ENTER)
+		time.sleep(1)
 
 	if not querys[i].district is None:
 		d = browser.find_element_by_xpath(Query.district)
 		d.send_keys(querys[i].district)
 		time.sleep(2) #for testing
 		d.send_keys(Keys.ENTER)
+		time.sleep(1)
 
 	if not querys[i].populated_area is None:
 		p = browser.find_element_by_xpath(Query.populated_area)
 		p.send_keys(querys[i].populated_area)
 		time.sleep(2) #for testing
 		p.send_keys(Keys.ENTER)
+		time.sleep(1)
 
 	if not querys[i].street_type is None:
 		st = browser.find_element_by_xpath(Query.street_type)
@@ -152,7 +155,7 @@ for i in range(len(querys)):
 	btn_search.click()
 
 	try:
-		row = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.row_result)))
+		row = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, Sender.row_result)))
 		row.click()
 	except TimeoutException:
 		terminate('ERROR', 'Searh result page was not loaded or not found query')
@@ -162,7 +165,7 @@ for i in range(len(querys)):
 		terminate('INFO', 'Debug mode ON, work is done')
 
 	try:
-		btn_send = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
+		btn_send = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
 	except TimeoutException:
 		terminate('ERROR', 'Somthing wrong')
 
@@ -178,7 +181,7 @@ for i in range(len(querys)):
 	for handle in browser.window_handles:
 		browser.switch_to_window(handle)
 		try:
-			s_uid = WebDriverWait(browser, 1).until(EC.presence_of_element_located((By.XPATH, Sender.search_uid)))
+			s_uid = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, Sender.search_uid)))
 			query_result.id = querys[i].id
 			query_result.location_id = querys[i].location_id
 			query_result.search_uid = s_uid.text
