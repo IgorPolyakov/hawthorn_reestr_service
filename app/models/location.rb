@@ -2,6 +2,7 @@
 
 class Location
   include Mongoid::Document
+  include Mongoid::Timestamps
   after_save :run_task
 
   field :kdastr_id, type: Integer # optional
