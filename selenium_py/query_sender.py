@@ -169,10 +169,6 @@ for i in range(len(querys)):
 	except TimeoutException:
 		terminate('ERROR', 'Somthing wrong')
 
-	#main_window_handle = None
-	#while not main_window_handle:
-	#    main_window_handle = browser.current_window_handle
-
 	btn_send.click()
 	btn_send.click()
 
@@ -203,19 +199,6 @@ for i in range(len(querys)):
 		search_estates.click()
 	except TimeoutException:
 		terminate('ERROR', 'Main menu page was not loaded')
-
-	# try:
-	# 	btn_retry = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_new_query)))
-	# 	btn_retry.click()
-	# except TimeoutException:
-	# 	terminate('ERROR', 'Searh menu page was not loaded')
-	# time.sleep(1)
-	# try:
-	# 	btn_clear = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_clear)))
-	# 	btn_clear.click()
-	# except TimeoutException:
-	# 	terminate('ERROR', 'Searh menu page was not loaded')
-	# time.sleep(1)
 
 json_string = json.dumps(query_results,default=obj_dict,sort_keys=True,indent=4)
 print(json_string)
