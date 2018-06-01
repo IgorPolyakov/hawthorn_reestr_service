@@ -121,3 +121,7 @@ venv.bak/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Customer
+*/bin
+thirdparty/
