@@ -89,7 +89,8 @@
 
   =====================================================
 
-## Work with API: How to update status on location
+## Work with API
+### How to update status on location
 
 ```
 curl -v -H "Accept: application/json" -H "Content-type: application/json" -X PATCH -d '{"location":{"status":"готово"}}' http://127.0.0.1:3000/search_queries/5b06edc86135e43b1b91b858/locations/5b06edc86135e43b1b91b859
@@ -105,10 +106,43 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X PAT
 
 `5b06edc86135e43b1b91b859` - location id
 
-`{"location":{"status":"готово"}}` - data
+data:
+```
+{
+   "location" : {
+      "status" : "готово"
+   }
+}
+ ```
 
 `PATCH` - HTTP request method
 
 status may be ``готово`` or `в обработке` .
 
 correct answer is: `{"message":"saved"}`
+
+
+### How to create new query
+
+```
+curl -v -H "Accept: application/json" -H "Content-type: application/json" POST -d '{ "search_query" : { "title" : "some_title", "locations_attributes" : { "0" : { "kdastr_id" : "88005553535", "use_kdastr" : "true" }, "1" : { "kdastr_id" : "88005553536", "use_kdastr" : "true" } } } }' http://127.0.0.1:3000/search_queries.json
+```
+
+data:
+```
+{
+   "search_query" : {
+      "title" : "some_title",
+      "locations_attributes" : {
+         "0" : {
+            "kdastr_id" : "88005553535",
+            "use_kdastr" : "true"
+         },
+         "1" : {
+            "use_kdastr" : "true",
+            "kdastr_id" : "88005553536"
+         }
+      }
+   }
+}
+```

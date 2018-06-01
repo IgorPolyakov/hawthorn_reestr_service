@@ -3,6 +3,7 @@
 class SearchQueriesController < ApplicationController
   before_action :set_search_query, only: %i[show destroy]
 
+  skip_before_action :verify_authenticity_token
   # GET /search_queries
   # GET /search_queries.json
   def index
@@ -28,7 +29,7 @@ class SearchQueriesController < ApplicationController
           QuerySenderWorker.perform_async(@search_query.id.to_s, location.id.to_s)
         end
         format.html { redirect_to @search_query, notice: 'Search query was successfully created.' }
-        format.json { render :show, status: :created, location: @search_query }
+        format.json { render json: { message: 'saved' }.to_json, status: :ok }
       else
         format.html { render :new }
         format.json { render json: @search_query.errors, status: :unprocessable_entity }
