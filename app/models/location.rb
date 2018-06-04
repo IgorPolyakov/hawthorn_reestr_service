@@ -5,7 +5,7 @@ class Location
   include Mongoid::Timestamps
   after_save :run_task
 
-  field :kdastr_id, type: Integer # optional
+  field :kdastr_id, type: String # optional
   field :use_kdastr, type: Boolean, default: false # optional
   field :region, type: String
   field :district, type: String # optional
