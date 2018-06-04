@@ -72,9 +72,12 @@ if len(token) != 5 :
 # q_r.date = datetime.today().strftime("%d.%m.%Y %H:%M")
 # q_r.sendData(2)
 # sys.exit()
+a = models.SearchHome()
 for count in range(1,61+1):
-	print(count)
+    setattr(a,str(count),count)
+print(json.dumps(a,default=models.obj_dict,sort_keys=True,indent=4))
 sys.exit()
+
 # Parse JSON into an object with attributes corresponding to dict keys.
 querys = models.jsonToobj(args.query)
 
@@ -101,55 +104,60 @@ try:
 except TimeoutException:
 	terminate('ERROR', 'Main menu page was not loaded')
 
-try:
-	btn_search = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
-except TimeoutException:
-	terminate('ERROR', 'Searh menu page was not loaded')
-#Test for one query
-if not querys.use_kdastr is None:
-	print("do not work use_kdastr, coming soon...")
+query_results = []
+for i in range(len(querys)):
+	try:
+		btn_search = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
+	except TimeoutException:
+		terminate('ERROR', 'Searh menu page was not loaded')
+	#Test for one query
+	if not querys[i].use_kdastr is None:
+		print("do not work use_kdastr, coming soon...")
 
-if not querys.kdastr_id is None:
-	print("do not work kadastr_id, coming soon...")
+	if not querys[i].kdastr_id is None:
+		print("do not work kadastr_id, coming soon...")
 
-if not querys.region is None:
-	r = browser.find_element_by_xpath(Query.region)
-	r.send_keys(querys.region)
-	time.sleep(4) #for testing
-	r.send_keys(Keys.ENTER)
+	if not querys[i].region is None:
+		r = browser.find_element_by_xpath(Query.region)
+		r.send_keys(querys[i].region)
+		time.sleep(4) #for testing
+		r.send_keys(Keys.ENTER)
+		time.sleep(1)
 
-if not querys.district is None:
-	d = browser.find_element_by_xpath(Query.district)
-	d.send_keys(querys.district)
-	time.sleep(2) #for testing
-	d.send_keys(Keys.ENTER)
+	if not querys[i].district is None:
+		d = browser.find_element_by_xpath(Query.district)
+		d.send_keys(querys[i].district)
+		time.sleep(2) #for testing
+		d.send_keys(Keys.ENTER)
+		time.sleep(1)
 
-if not querys.populated_area is None:
-	p = browser.find_element_by_xpath(Query.populated_area)
-	p.send_keys(querys.populated_area)
-	time.sleep(2) #for testing
-	p.send_keys(Keys.ENTER)
+	if not querys[i].populated_area is None:
+		p = browser.find_element_by_xpath(Query.populated_area)
+		p.send_keys(querys[i].populated_area)
+		time.sleep(2) #for testing
+		p.send_keys(Keys.ENTER)
+		time.sleep(1)
 
-if not querys.street_type is None:
-	st = browser.find_element_by_xpath(Query.street_type)
-	st.send_keys(querys.street_type)
-	time.sleep(2) #for testing
-	st.send_keys(Keys.ENTER)
+	if not querys[i].street_type is None:
+		st = browser.find_element_by_xpath(Query.street_type)
+		st.send_keys(querys[i].street_type)
+		time.sleep(2) #for testing
+		st.send_keys(Keys.ENTER)
 
-if not querys.street_name is None:
-	browser.find_element_by_xpath(Query.street_name).send_keys(querys.street_name)
-	time.sleep(0.5) #for testing
+	if not querys[i].street_name is None:
+		browser.find_element_by_xpath(Query.street_name).send_keys(querys[i].street_name)
+		time.sleep(0.5) #for testing
 
-if not querys.house_number is None:
-	browser.find_element_by_xpath(Query.house_number).send_keys(str(querys.house_number))
-	time.sleep(0.5) #for testing
+	if not querys[i].house_number is None:
+		browser.find_element_by_xpath(Query.house_number).send_keys(str(querys[i].house_number))
+		time.sleep(0.5) #for testing
 
-# if not querys.apartment is None:
-# 	browser.find_element_by_xpath(Query.apartment).send_keys(str(querys.apartment))
-# 	time.sleep(0.5) #for testing
+	# if not querys[i].apartment is None:
+	# 	browser.find_element_by_xpath(Query.apartment).send_keys(str(querys[i].apartment))
+	# 	time.sleep(0.5) #for testing
 
-btn_search.click()
-btn_search.click()
+	btn_search.click()
+	btn_search.click()
 
 try:
 	c_r = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, Search.count_result)))
@@ -160,5 +168,21 @@ count_result = int (c_r.text)
 if count_result <= 0:
 	terminate('WARNING', 'Nothing was found at all')
 
-# for count in rage(1,count_result+1)
+for c_c in range(1,count_result+1):
+	s_h = models.SearchHome()
+	s_h.kdastr_id = browser.find_element_by_xpath(Search.getTableValue(c_c,1)).text
+	s_h.full_address = browser.find_element_by_xpath(Search.getTableValue(c_c,2)).text
+	s_h.object_type = browser.find_element_by_xpath(Search.getTableValue(c_c,3)).text
+	s_h.area = browser.find_element_by_xpath(Search.getTableValue(c_c,4)).text
+	s_h.category = browser.find_element_by_xpath(Search.getTableValue(c_c,5)).text
+	s_h.legal_usage_type = browser.find_element_by_xpath(Search.getTableValue(c_c,6)).text
+	s_h.usage_type = browser.find_element_by_xpath(Search.getTableValue(c_c,7)).text
+	query_results.append(s_h)
+	print(s_h.kdastr_id)
 
+# print(query_results)
+
+browser.quit()
+
+if args.virtual:
+	display.stop()

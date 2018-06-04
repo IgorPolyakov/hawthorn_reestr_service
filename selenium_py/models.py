@@ -101,7 +101,7 @@ class Sender(object):
 		self.status = status
 		self.root_path = path
 
-class SearchHome(object):
+class SearchHome():
 	"""docstring for SearchHome"""
 	def __init__(self):
 		super().__init__()
