@@ -107,10 +107,13 @@ for i in range(len(querys)):
 		terminate('ERROR', 'Searh menu page was not loaded')
 	#Test for one query
 	if not querys[i].use_kdastr is None:
-		print("do not work use_kdastr, coming soon...")
+		browser.find_element_by_xpath(Query.kadastr).send_keys(querys[i].kdastr_id)
+		time.sleep(1)
 
-	if not querys[i].kdastr_id is None:
-		print("do not work kadastr_id, coming soon...")
+	# if not querys[i].kdastr_id is None:
+	# 	if querys[i].use_kdastr:
+	# 		browser.find_element_by_id(Query.use_kdastr_id).click()
+	# 		time.sleep(1)
 
 	if not querys[i].region is None:
 		r = browser.find_element_by_xpath(Query.region)

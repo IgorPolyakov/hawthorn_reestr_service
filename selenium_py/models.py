@@ -31,6 +31,26 @@ def sendError(code,message):
 def obj_dict(obj):
 	return obj.__dict__
 
+def prepareHome(querys):
+	lap = LAProxy()
+	for k in range(len(querys)):
+		shp = SearchHomeProxy(querys[k].kdastr_id)
+		setattr(lap,str(k),shp)
+	dp = DProxy(lap)
+	sq = SQProxy(dp)
+	return json.dumps(sq,default=obj_dict,sort_keys=True,indent=4)
+
+def send(payload):
+	urlHome = 'http://80.211.41.148:9999/search_queries.json'
+	print("[INFO] Send data: %s"%(payload))
+	if args_onHttp:
+		s_http.sendPostCustomer(urlHome,payload)
+	if args_onFile:
+		if not os.path.exists('bin'):
+			os.makedirs('bin')
+		file = open('bin/result.json', 'ab')
+		file.write(payload.encode('utf-8'))
+
 class QueryKdr:
 	"""it contains data about QueryKdr"""
 	def __init__(self):
@@ -118,6 +138,19 @@ class SearchHomeProxy:
 	def __init__(self,kdastr_id):
 		super().__init__()
 		self.kdastr_id = kdastr_id
+		self.use_kdastr = True
 
-		
+class SQProxy:
+	def __init__(self,data):
+		super().__init__()
+		self.search_query = data
 
+class DProxy:
+	def __init__(self,data):
+		super().__init__()
+		self.title = "some_title"
+		self.locations_attributes = data
+
+class LAProxy:
+	def __init__(self):
+		super().__init__()

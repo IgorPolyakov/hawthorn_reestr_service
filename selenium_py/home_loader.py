@@ -72,11 +72,11 @@ if len(token) != 5 :
 # q_r.date = datetime.today().strftime("%d.%m.%Y %H:%M")
 # q_r.sendData(2)
 # sys.exit()
-a = models.SearchHome()
-for count in range(1,61+1):
-    setattr(a,str(count),count)
-print(json.dumps(a,default=models.obj_dict,sort_keys=True,indent=4))
-sys.exit()
+# a = models.SearchHome()
+# for count in range(1,61+1):
+#     setattr(a,str(count),count)
+# print(json.dumps(a,default=models.obj_dict,sort_keys=True,indent=4))
+# sys.exit()
 
 # Parse JSON into an object with attributes corresponding to dict keys.
 querys = models.jsonToobj(args.query)
@@ -178,9 +178,8 @@ for c_c in range(1,count_result+1):
 	s_h.legal_usage_type = browser.find_element_by_xpath(Search.getTableValue(c_c,6)).text
 	s_h.usage_type = browser.find_element_by_xpath(Search.getTableValue(c_c,7)).text
 	query_results.append(s_h)
-	print(s_h.kdastr_id)
 
-# print(query_results)
+models.send(models.prepareHome(query_results))
 
 browser.quit()
 

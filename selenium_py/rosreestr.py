@@ -50,7 +50,8 @@ class Query():
 	def __init__(self):
 		super().__init__()
 	kadastr = "/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div[1]/div/div/div/div[1]/div/div/div/div[1]/div/input"
-	use_kdastr = '//*[@id=//"gwt-uid-1"]'
+	use_kdastr = "//*[@id=//'gwt-uid-1']"
+	use_kdastr_id = "gwt-uid-1"
 	region = "/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div[1]/div/div/div/div[1]/div/div/div/div[1]/div/div/div/div[1]/div[1]/div/input"
 	district = "/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div[1]/div/div/div/div[2]/div/div/div/div[1]/div/div/div/div[1]/div/div/input"
 	populated_area ="/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[2]/div/div/div[2]/div/div/div/div/div[2]/div/div/div/div[3]/div/div/div/div[1]/div/div/div/div[3]/div/div/div/div[1]/div/div/div/div[1]/div/div/input"
