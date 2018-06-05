@@ -20,6 +20,7 @@ class QuerySenderWorker
     data[:house_number] = location.house_number == '' ? nil : location.house_number # "148"
     data[:apartment] = location.apartment == '' ? nil : location.apartment # "26"
 
+    pp "python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data.to_json}]'"
     `python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data.to_json}]'`
     # `curl -v -H "Accept: application/json" -H "Content-type: application/json" -X PATCH -d '{"location":{"status":"в обработке"}}' http://127.0.0.1:3000/search_queries/#{search_query_id}/locations/#{location_id}`
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
