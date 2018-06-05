@@ -40,11 +40,11 @@ def prepareHome(querys):
 	sq = SQProxy(dp)
 	return json.dumps(sq,default=obj_dict,sort_keys=True,indent=4)
 
-def send(payload):
-	urlHome = 'http://80.211.41.148:9999/search_queries.json'
+def send(payload,query_id):
+	urlHome = 'http://80.211.41.148:9999/search_queries/'+query_id
 	print("[INFO] Send data: %s"%(payload))
 	if args_onHttp:
-		s_http.sendPostCustomer(urlHome,payload)
+		s_http.sendCustomer(urlHome,payload)
 	if args_onFile:
 		if not os.path.exists('bin'):
 			os.makedirs('bin')

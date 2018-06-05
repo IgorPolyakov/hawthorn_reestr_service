@@ -179,7 +179,7 @@ for c_c in range(1,count_result+1):
 	s_h.usage_type = browser.find_element_by_xpath(Search.getTableValue(c_c,7)).text
 	query_results.append(s_h)
 
-models.send(models.prepareHome(query_results))
+models.send(models.prepareHome(query_results),querys[0].id)
 
 browser.quit()
 
