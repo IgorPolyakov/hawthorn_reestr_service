@@ -7,6 +7,7 @@ class SearchQuery
   embeds_many :locations
   accepts_nested_attributes_for :locations
   after_save :run_workers
+  after_create :run_workers
 
   def status
     total = locations.inject(0) { |sum, loc| loc.status == 'готово' ? sum + 1 : sum }
