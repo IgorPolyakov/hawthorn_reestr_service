@@ -36,7 +36,7 @@ def prepareHome(querys):
 	for k in range(len(querys)):
 		shp = SearchHomeProxy(querys[k].kdastr_id)
 		setattr(lap,str(k),shp)
-	dp = DProxy(lap)
+	dp = DProxy(querys[0].full_address.split(',')[1],lap)
 	sq = SQProxy(dp)
 	return json.dumps(sq,default=obj_dict,sort_keys=True,indent=4)
 
@@ -146,9 +146,9 @@ class SQProxy:
 		self.search_query = data
 
 class DProxy:
-	def __init__(self,data):
+	def __init__(self,titel,data):
 		super().__init__()
-		self.title = "some_title"
+		self.title = titel
 		self.locations_attributes = data
 
 class LAProxy:

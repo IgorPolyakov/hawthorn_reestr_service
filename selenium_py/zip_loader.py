@@ -116,8 +116,9 @@ for search_uid in search_uids:
 		my_query.status = browser.find_element_by_xpath(ResponseMenu.getTableValue(i,3)).text
 		my_query.zip_url = btn_load.get_attribute("href")
 		btn_load.click()
-		my_query.root_path = "%s/Response-%s.zip"%(os.path.expanduser(args.output),my_query.search_uid)
+		# my_query.root_path = "%s/Response-%s.zip"%(os.path.expanduser(args.output),my_query.search_uid)
 		zipper.reSaveZip("Response-%s.zip"%(my_query.search_uid),my_query.id)
+		my_query.root_path = zipper.megaZip_path(my_query.id)
 		my_querys.append(my_query)
 		my_query.sendData(1)
 	except TimeoutException:
