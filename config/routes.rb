@@ -2,7 +2,7 @@
 
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  resources :search_queries, except: :edit do
+  resources :search_queries do
     resources :locations, only: %i[update show] do
       member do
         get :download

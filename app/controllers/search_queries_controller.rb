@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchQueriesController < ApplicationController
-  before_action :set_search_query, only: %i[show destroy]
+  before_action :set_search_query, only: %i[show destroy update]
 
   skip_before_action :verify_authenticity_token
   # GET /search_queries
@@ -31,6 +31,16 @@ class SearchQueriesController < ApplicationController
         format.html { render :new }
         format.json { render json: @search_query.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  # PATCH /search_queries/1
+  # PATCH /search_queries/1.json
+  def update
+    if @search_query.update(search_query_params)
+      render json: { message: 'saved' }.to_json, status: :ok
+    else
+      render json: @search_query.errors, status: :unprocessable_entity
     end
   end
 
