@@ -122,12 +122,11 @@ curl -v -H "Accept: application/json" -H "Content-type: application/json" -X PAT
 - for update use `PATCH` HTTP request method
 - correct answer is: `{"message":"saved"}`
 - url `http://127.0.0.1:3000/search_queries/5b16b7a66135e42b1a04a6f8`
-
+- `5b16b7a66135e42b1a04a6f8` - search_query_id
 data:
 ```
 {
    "search_query" : {
-      "title" : "some_title",
       "locations_attributes" : {
          "0" : {
             "kdastr_id" : "70:21:0200026:2953",
