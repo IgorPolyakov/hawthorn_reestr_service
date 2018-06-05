@@ -26,7 +26,7 @@ class Location
 
   def run_zip_loader
     if status == 'в обработке'
-      ZipLoaderWorker.perform_async(search_query.id.to_s, id.to_s)
+      ZipLoaderWorker.perform_in(6.hours, search_query.id.to_s, id.to_s)
     end
   end
 end
