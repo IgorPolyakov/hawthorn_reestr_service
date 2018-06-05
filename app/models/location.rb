@@ -3,7 +3,7 @@
 class Location
   include Mongoid::Document
   include Mongoid::Timestamps
-  after_save :run_task
+  after_save :run_zip_loader
 
   field :kdastr_id, type: String # optional
   field :use_kdastr, type: Boolean, default: false # optional
@@ -24,7 +24,7 @@ class Location
 
   private
 
-  def run_task
+  def run_zip_loader
     if status == 'в обработке'
       ZipLoaderWorker.perform_async(search_query.id.to_s, id.to_s)
     end
