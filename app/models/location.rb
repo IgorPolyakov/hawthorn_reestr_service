@@ -7,7 +7,7 @@ class Location
 
   field :kdastr_id, type: String # optional
   field :use_kdastr, type: Boolean, default: false # optional
-  field :region, type: String
+  field :region, type: String, default: 'Томская область'
   field :district, type: String # optional
   field :populated_area, type: String # optional
   field :street_type, type: String

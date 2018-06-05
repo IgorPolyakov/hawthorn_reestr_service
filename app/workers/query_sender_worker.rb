@@ -12,7 +12,7 @@ class QuerySenderWorker
     data[:location_id] = location_id
     data[:kdastr_id] = location.kdastr_id == '' ? nil : location.kdastr_id # null
     data[:use_kdastr] = location.use_kdastr == '' ? nil : location.use_kdastr # false
-    data[:region] = location.region == '' ? 'Томская область' : location.region # "Томская область"
+    data[:region] = location.region == '' ? nil : location.region # "Томская область"
     data[:district] = location.district == '' ? nil : location.district # null
     data[:populated_area] = location.populated_area == '' ? nil : location.populated_area # null
     data[:street_type] = location.street_type == '' ? nil : location.street_type # "Улица"
