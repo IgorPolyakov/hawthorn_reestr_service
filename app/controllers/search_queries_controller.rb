@@ -62,6 +62,7 @@ class SearchQueriesController < ApplicationController
         :title,
         locations_attributes: %i[
           kdastr_id
+          use_kdastr
           region
           district
           populated_area

@@ -7,6 +7,7 @@ json.array! @search_queries do |sq|
   json.location sq.locations do |location|
     json.id location.id.to_s
     json.kdastr_id location.kdastr_id
+    json.use_kdastr location.use_kdastr
     json.region location.region
     json.district location.district
     json.populated_area location.populated_area

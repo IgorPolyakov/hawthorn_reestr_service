@@ -22,6 +22,11 @@
     <div class="panel">
 
       <div class="form-group">
+        <%= location_form.check_box :use_kdastr %>
+        <%= location_form.label 'Использовать кадастр?' %>
+      </div>
+
+      <div class="form-group">
         <%= location_form.label 'Кадастровый номер' %>
         <%= location_form.text_field :kdastr_id,  placeholder: 'Кадастровый номер', class: 'form-control' %>
       </div>
