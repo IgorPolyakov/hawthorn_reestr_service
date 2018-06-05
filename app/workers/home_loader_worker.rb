@@ -20,9 +20,7 @@ class HomeLoaderWorker
     data[:house_number] = location.house_number == '' ? nil : location.house_number # "148"
     data[:apartment] = location.apartment == '' ? nil : location.apartment # "26"
 
-    text = "python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'"
-    pp text
-    answer = system(text)
+    answer = `python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'`
 
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
     raise 'wait for data from HomeLoaderWorker' unless answer.include? 'Success'
