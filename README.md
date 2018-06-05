@@ -21,16 +21,16 @@
 ```
   searching:
   {
-     required id: uint32
-     required serarch_type: string
+     required id: string
+     required title: string
      repeated querys: query
   }
 ```
 ```
   query:
   {
-     optional kdastr_id: uint32
-     optional useg_сadastr: bool
+     optional kdastr_id: string
+     optional use_kdastr: bool
      required region: string
      optional district: string
      optional populated_area: string
@@ -117,7 +117,7 @@ data:
 
 `PATCH` - HTTP request method
 
-status may be ``готово`` or `в обработке` .
+status may be ``готово`` or `в обработке`.
 
 correct answer is: `{"message":"saved"}`
 
@@ -146,3 +146,7 @@ data:
    }
 }
 ```
+
+`POST` - HTTP request method
+
+correct answer is: `{"message":"saved"}`
