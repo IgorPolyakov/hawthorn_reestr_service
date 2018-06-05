@@ -20,7 +20,7 @@ class HomeLoaderWorker
     data[:house_number] = location.house_number == '' ? nil : location.house_number # "148"
     data[:apartment] = location.apartment == '' ? nil : location.apartment # "26"
 
-    text = "python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -q '[#{data.to_json}]'"
+    text = "python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'"
     pp text
     system(text)
 
