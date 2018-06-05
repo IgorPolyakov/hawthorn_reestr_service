@@ -22,11 +22,9 @@ class HomeLoaderWorker
 
     text = "python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'"
     pp text
-    system(text)
+    answer = system(text)
 
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
-    # unless (status == 'в обработке') || (status == 'готово')
-    #   raise "try to get 'search_uid'"
-    # end
+    raise 'wait for data from HomeLoaderWorker' unless answer.include? 'Success'
   end
 end
