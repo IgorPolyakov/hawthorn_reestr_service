@@ -19,7 +19,7 @@ class SearchQuery
     locations.each do |location|
       if location.status == 'запуск' && location.apartment.empty?
         HomeLoaderWorker.perform_async(id.to_s, location.id.to_s)
-      elsif location.status == 'запуск' && !location.apartment.empty?
+      else
         QuerySenderWorker.perform_async(id.to_s, location.id.to_s)
       end
     end
