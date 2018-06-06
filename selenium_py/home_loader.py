@@ -115,7 +115,8 @@ for i in range(len(querys)):
 		print("do not work use_kdastr, coming soon...")
 
 	if not querys[i].kdastr_id is None:
-		print("do not work kadastr_id, coming soon...")
+		browser.find_element_by_xpath(Query.kadastr).send_keys(querys[i].kdastr_id)
+		time.sleep(1)
 
 	if not querys[i].region is None:
 		r = browser.find_element_by_xpath(Query.region)
