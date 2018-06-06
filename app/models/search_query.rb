@@ -17,10 +17,12 @@ class SearchQuery
 
   def run_workers
     locations.each do |location|
+      location.delete if location.status == 'закончено'
+    end
+
+    locations.each do |location|
       if location.status == 'запуск' && location.apartment.try(:empty?)
         HomeLoaderWorker.perform_async(id.to_s, location.id.to_s)
-      elsif location.status == 'закончено'
-        location.delete
       else
         QuerySenderWorker.perform_async(id.to_s, location.id.to_s)
       end
