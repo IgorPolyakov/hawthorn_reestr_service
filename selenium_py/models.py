@@ -31,12 +31,15 @@ def sendError(code,message):
 def obj_dict(obj):
 	return obj.__dict__
 
-def prepareHome(querys):
+def prepareHome(querys,location_id):
 	lap = LAProxy()
 	for k in range(len(querys)):
 		shp = SearchHomeProxy(querys[k].kdastr_id)
 		setattr(lap,str(k),shp)
-	dp = DProxy(querys[0].full_address.split(',')[1],lap)
+
+	setattr(lap,str(len(querys)),Crutch(location_id))
+	# dp = DProxy(querys[0].full_address.split(',')[1],lap)
+	dp = DProxy(querys[0].full_address,lap)
 	sq = SQProxy(dp)
 	return json.dumps(sq,default=obj_dict,sort_keys=True,indent=4)
 
@@ -45,9 +48,9 @@ def send(payload,query_id,location_id):
 	print("[INFO] Send data: %s"%(payload))
 	if args_onHttp:
 		ret = s_http.sendCustomer(urlHome,payload)
-		if ret == 200:
-			s_http.setUrl(query_id,location_id)
-			s_http.send(json.dumps(Crutch(),default=obj_dict,sort_keys=True,indent=4))
+		# if ret == 200:
+		# 	s_http.setUrl(query_id,location_id)
+		# 	s_http.send(json.dumps(Crutch(),default=obj_dict,sort_keys=True,indent=4))
 	if args_onFile:
 		if not os.path.exists('bin'):
 			os.makedirs('bin')
@@ -159,6 +162,7 @@ class LAProxy:
 		super().__init__()
 
 class Crutch:
-	def __init__(self):
+	def __init__(self,id_q):
 		super().__init__()
+		self.id = id_q
 		self.status = "закончено"
