@@ -68,6 +68,7 @@ class SearchQueriesController < ApplicationController
       .permit(
         :title,
         locations_attributes: %i[
+          id
           kdastr_id
           use_kdastr
           region
