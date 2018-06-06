@@ -20,7 +20,7 @@ class SearchQuery
       if location.status == 'запуск' && location.apartment.try(:empty?)
         HomeLoaderWorker.perform_async(id.to_s, location.id.to_s)
       elsif location.status == 'закончено'
-        location.remove
+        location.delete
       else
         QuerySenderWorker.perform_async(id.to_s, location.id.to_s)
       end
