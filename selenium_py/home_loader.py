@@ -48,7 +48,7 @@ parser = argparse.ArgumentParser(description='Welcome to the help for query send
 parser.add_argument("-v", "--virtual", dest='virtual', action='store_true', help="Enabled useg virtual display.")
 parser.add_argument("-d", "--debug", dest='debug', action='store_true', help="Disable send statement to server.")
 parser.add_argument("-t", "--token", dest='token', nargs = '?', type = str, default = "c5793610-b33b-476f-bebf-53a0f1366383", help="Set token for loggin on site, it's have default value.")
-parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"loacation_id":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"19"}]',
+parser.add_argument("-q", "--query", dest='query', nargs = '?', type = str, default = '[{"id":1,"location_id":1,"kdastr_id":null,"use_kdastr":false,"region":"Томская область","district":null,"populated_area":null,"street_type":"Улица","street_name":"Красноармейская","house_number":"148","apartment":"19"}]',
 																			help="Query for search. support only json format.")
 parser.add_argument("-f", "--file", dest='onFile', action='store_true', help="Send result to file bin/send_query.json.")
 parser.add_argument("-http", "--http", dest='onHttp', action='store_true', help="Send result to http url.")
@@ -179,7 +179,7 @@ for c_c in range(1,count_result+1):
 	s_h.usage_type = browser.find_element_by_xpath(Search.getTableValue(c_c,7)).text
 	query_results.append(s_h)
 
-models.send(models.prepareHome(query_results),querys[0].id)
+models.send(models.prepareHome(query_results),querys[0].id,querys[0].location_id)
 
 browser.quit()
 

@@ -14,7 +14,7 @@ from collections import namedtuple
 args_onHttp = False
 args_onFile = False
 
-status = ["в обработке","готово","ошибка"]
+status = ["в обработке","готово","ошибка","закончено"]
 
 s_http = http()
 
@@ -40,11 +40,14 @@ def prepareHome(querys):
 	sq = SQProxy(dp)
 	return json.dumps(sq,default=obj_dict,sort_keys=True,indent=4)
 
-def send(payload,query_id):
+def send(payload,query_id,location_id):
 	urlHome = 'http://80.211.41.148:9999/search_queries/'+query_id
 	print("[INFO] Send data: %s"%(payload))
 	if args_onHttp:
-		s_http.sendCustomer(urlHome,payload)
+		ret = s_http.sendCustomer(urlHome,payload)
+		if ret == 200:
+			s_http.setUrl(query_id,location_id)
+			s_http.send(json.dumps(Crutch(),default=obj_dict,sort_keys=True,indent=4))
 	if args_onFile:
 		if not os.path.exists('bin'):
 			os.makedirs('bin')
@@ -154,3 +157,8 @@ class DProxy:
 class LAProxy:
 	def __init__(self):
 		super().__init__()
+
+class Crutch:
+	def __init__(self):
+		super().__init__()
+		self.status = "закончено"
