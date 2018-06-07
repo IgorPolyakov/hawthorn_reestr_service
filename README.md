@@ -170,3 +170,19 @@ data:
    }
 }
 ```
+## Deploy on **production server**
+
+### install dependency
+
+first install `ruby`
+
+then run
+```
+gem install mina
+```
+
+### for deploy last commit on server run:
+
+```
+mina deploy
+```
