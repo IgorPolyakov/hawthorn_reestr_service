@@ -138,10 +138,11 @@ for i in range(len(querys)):
 		time.sleep(1)
 
 	if not querys[i].street_type is None:
-		st = browser.find_element_by_xpath(Query.street_type)
-		st.send_keys(querys[i].street_type)
-		time.sleep(2) #for testing
-		st.send_keys(Keys.ENTER)
+		if not querys[i].street_name is None:
+			st = browser.find_element_by_xpath(Query.street_type)
+			st.send_keys(querys[i].street_type)
+			time.sleep(2) #for testing
+			st.send_keys(Keys.ENTER)
 
 	if not querys[i].street_name is None:
 		browser.find_element_by_xpath(Query.street_name).send_keys(querys[i].street_name)
@@ -156,7 +157,12 @@ for i in range(len(querys)):
 		time.sleep(0.5) #for testing
 
 	btn_search.click()
-	btn_search.click()
+	time.sleep(1)
+	try:
+		btn_search2 = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
+		btn_search2.click()
+	except TimeoutException:
+		print("[WARNING] Don't found search buttom, so what?")
 
 	try:
 		row = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, Sender.row_result)))
@@ -174,7 +180,12 @@ for i in range(len(querys)):
 		terminate('ERROR', 'Somthing wrong')
 
 	btn_send.click()
-	btn_send.click()
+	time.sleep(1)
+	try:
+		btn_send2 = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
+		btn_send2.click()
+	except TimeoutException:
+		print("[WARNING] Don't found send buttom, so what?")
 
 	query_result = models.QueryResult()
 

@@ -140,10 +140,11 @@ for i in range(len(querys)):
 		time.sleep(1)
 
 	if not querys[i].street_type is None:
-		st = browser.find_element_by_xpath(Query.street_type)
-		st.send_keys(querys[i].street_type)
-		time.sleep(2) #for testing
-		st.send_keys(Keys.ENTER)
+		if not querys[i].street_name is None:
+			st = browser.find_element_by_xpath(Query.street_type)
+			st.send_keys(querys[i].street_type)
+			time.sleep(2) #for testing
+			st.send_keys(Keys.ENTER)
 
 	if not querys[i].street_name is None:
 		browser.find_element_by_xpath(Query.street_name).send_keys(querys[i].street_name)
@@ -153,12 +154,19 @@ for i in range(len(querys)):
 		browser.find_element_by_xpath(Query.house_number).send_keys(str(querys[i].house_number))
 		time.sleep(0.5) #for testing
 
-	# if not querys[i].apartment is None:
-	# 	browser.find_element_by_xpath(Query.apartment).send_keys(str(querys[i].apartment))
-	# 	time.sleep(0.5) #for testing
+	if not querys[i].apartment is None:
+		browser.find_element_by_xpath(Query.apartment).send_keys(str(querys[i].apartment))
+		time.sleep(0.5) #for testing
 
 	btn_search.click()
-	btn_search.click()
+
+	time.sleep(1)
+	try:
+		btn_search2 = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
+		btn_search2.click()
+	except TimeoutException:
+		print("[WARNING] Don't found search buttom, so what?")
+		
 
 try:
 	c_r = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, Search.count_result)))
