@@ -12,7 +12,7 @@ import subprocess
 
 
 download_path = os.path.expanduser('~/download')
-work_path = os.getcwd() + "/data/"
+work_path =os.path.expanduser('~/download/data/')
 temp_path = os.path.expanduser('~/download/temp')
 def megaZip_path(query_id):
 	return work_path+query_id+"/"+query_id+".zip"
