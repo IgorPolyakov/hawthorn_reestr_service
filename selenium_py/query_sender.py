@@ -126,9 +126,13 @@ for i in range(len(querys)):
 	if not querys[i].district is None:
 		d = browser.find_element_by_xpath(Query.district)
 		d.send_keys(querys[i].district)
-		time.sleep(2) #for testing
-		d.send_keys(Keys.ENTER)
 		time.sleep(1)
+		try:
+			d_s = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.district_scroll)))
+			d_s.click()
+			time.sleep(1)
+		except TimeoutException:
+			terminate('ERROR', 'District is not good')
 
 	if not querys[i].populated_area is None:
 		p = browser.find_element_by_xpath(Query.populated_area)
@@ -160,7 +164,10 @@ for i in range(len(querys)):
 	time.sleep(1)
 	try:
 		btn_search2 = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
-		btn_search2.click()
+		try:
+			btn_search2.click()
+		except TimeoutException:
+			print("[WARNING] Don't found search buttom, so what?")
 	except TimeoutException:
 		print("[WARNING] Don't found search buttom, so what?")
 
@@ -180,7 +187,7 @@ for i in range(len(querys)):
 		terminate('ERROR', 'Somthing wrong')
 
 	btn_send.click()
-	time.sleep(1)
+	time.sleep(2)
 	try:
 		btn_send2 = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Sender.btn_send)))
 		btn_send2.click()
