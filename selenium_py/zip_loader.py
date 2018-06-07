@@ -110,7 +110,7 @@ for search_uid in search_uids:
 	browser.find_element_by_xpath(ResponseMenu.search_btn).click()
 
 	try:
-		btn_load = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, ResponseMenu.getTableValue(i,4))))
+		btn_load = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, ResponseMenu.getTableValue(i,4))))
 		my_query.search_uid = browser.find_element_by_xpath(ResponseMenu.getTableValue(i,1)).text
 		my_query.date_request = browser.find_element_by_xpath(ResponseMenu.getTableValue(i,2)).text
 		my_query.status = browser.find_element_by_xpath(ResponseMenu.getTableValue(i,3)).text
