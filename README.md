@@ -186,3 +186,7 @@ gem install mina
 ```
 mina deploy
 ```
+
+## Changelog
+
+All changes you can see [here](CHANGELOG.md).
