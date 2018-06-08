@@ -11,4 +11,21 @@
 <p>Квартира - <strong><%= @location.apartment %></strong></p>
 <p>Поиск uid - <strong><%= @location.search_uid %></strong></p>
 <p>Скачать - <%= link_to 'Архив', download_search_query_location_path(@search_query, @location), class: 'btn btn-outline-primary' %></p>
+<p>
+  <button id="log_btn" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#show_logs">Журнал событий</button>
+</p>
+<div id="show_logs" class="collapse">
+  <pre id='logs'>
+  </pre>
+</div>
+<script>
+    $("#log_btn").click(function () {
+        var location_id = '<%= @location.id %>'
+        var search_query_id = '<%= @search_query.id %>'
+            $.getJSON("/search_queries/" + search_query_id + "/locations/"+ location_id +"/log.json", function (data) {
+                console.log(data);
+                $("#logs").text(data.log);
+            });
+    });
+</script>
 <%= link_to "Назад", search_query_path(@search_query), class: 'btn btn-outline-success' %>

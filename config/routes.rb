@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :locations, only: %i[update show] do
       member do
         get :download
+        get :log
       end
     end
   end

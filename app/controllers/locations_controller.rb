@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: %i[show update download]
+  before_action :set_location, only: %i[show update download log]
   skip_before_action :verify_authenticity_token
   # GET /locations
   # GET /locations.json
@@ -32,6 +32,10 @@ class LocationsController < ApplicationController
       flash[:alert] = 'File not found'
       redirect_to root_path
     end
+  end
+
+  def log
+    render json: { log: @location.log }
   end
 
   private
