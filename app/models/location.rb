@@ -23,11 +23,7 @@ class Location
   embedded_in :search_query
   # validates :region, :street_type, :street_name, :house_number, :apartment, :zip_url, presence: true
   def log
-    if File.exist? log_path
-      File.read(log_path)
-    else
-      'Нет доступных журналов'
-    end
+    File.exist?(log_path) ? File.read(log_path) : 'Нет доступных журналов'
   end
 
   private
