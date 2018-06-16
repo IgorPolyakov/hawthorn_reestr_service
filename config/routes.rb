@@ -2,7 +2,7 @@
 
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  resources :users
+  devise_for :users
   resources :search_queries do
     resources :locations, only: %i[update show] do
       member do

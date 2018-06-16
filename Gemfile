@@ -19,6 +19,7 @@ gem 'bootstrap'
 gem 'devise'
 gem 'mongoid'
 gem 'sidekiq'
+gem 'devise-i18n'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

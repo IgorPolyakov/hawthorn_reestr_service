@@ -4,6 +4,7 @@ class SearchQuery
   include Mongoid::Document
   include Mongoid::Timestamps
   field :title, type: String
+  belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations
   after_save :run_workers
