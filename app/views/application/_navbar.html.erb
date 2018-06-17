@@ -5,16 +5,21 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <% if user_signed_in? %>
     <ul class="navbar-nav mr-auto">
-      <% if current_user %>
         <li class="nav-item">
           <%= link_to 'Сайдкик', sidekiq_web_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to 'Запросы', search_queries_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to t(".sign_out"), destroy_user_session_path, method: :delete,  class: "nav-link" %>
+        </li>
+      </ul>
       <% else %>
-        <%= render "devise/shared/links" %>
+    <ul class="navbar-nav ml-auto">
+      <%= render "devise/shared/links" %>
       <% end %>
     </ul>
   </div>
