@@ -30,7 +30,7 @@ class Location
 
   def run_zip_loader
     if status == 'в обработке'
-      ZipLoaderWorker.perform_in(2.hours, search_query.id.to_s, id.to_s)
+      ZipLoaderWorker.perform_in(30.minutes, search_query.id.to_s, id.to_s)
     end
   end
 end
