@@ -172,18 +172,23 @@ for i in range(len(querys)):
 		btn_search2 = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, Query.btn_search)))
 		try:
 			btn_search2.click()
-		except TimeoutException:
+		except:
 			print("[WARNING] Don't found search buttom, so what?")
 	except TimeoutException:
 		print("[WARNING] Don't found search buttom, so what?")
 		
-
+count_result = 0 
 try:
 	c_r = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, Search.count_result)))
+	count_result = int (c_r.text)
 except TimeoutException:
-	terminate('ERROR', 'Searh menu page was not loaded')
+	try:
+		c_r_c = WebDriverWait(browser, 20).until(EC.presence_of_element_located((By.XPATH, Search.count_result_const))).text
+		if "200" in c_r_c:
+			count_result = 200
+	except:
+		terminate('ERROR', 'Searh menu page was not loaded')
 
-count_result = int (c_r.text)
 if count_result <= 0:
 	terminate('WARNING', 'Nothing was found at all')
 

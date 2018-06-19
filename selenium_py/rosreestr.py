@@ -67,6 +67,7 @@ class Search(object):
 	def __init__(self):
 		super().__init__()
 	count_result = "/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[4]/div/div/div/div[1]/div/div/div/div[1]/div/div/b"
+	count_result_const = "/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[4]/div/div/div/div[1]/div/div/div/div[1]/div/div"
 	def getTableValue(row,col):
 		if col == 1:
 			return "/html/body/div[1]/div[6]/div[4]/div/div/section/div[2]/div[2]/div/div/div[2]/div/div[2]/div/div/div/div[1]/div/div/div/div[5]/div/div/div[2]/div[1]/table/tbody/tr[%s]/td[%s]/div/div/span"%(row,col)
