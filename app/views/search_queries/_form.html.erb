@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= form.label 'Описание запроса' %>
-    <%= form.text_field :title, placeholder: 'Дело № 11', class: 'form-control' %>
+    <%= form.text_field :title, placeholder: 'Дело № 11', class: 'form-control', required: true %>
   </div>
 
   <br>
@@ -28,17 +28,17 @@
 
       <div class="form-group">
         <%= location_form.label 'Кадастровый номер' %>
-        <%= location_form.text_field :kdastr_id,  placeholder: 'Кадастровый номер', class: 'form-control' %>
+        <%= location_form.text_field :kdastr_id,  placeholder: 'Кадастровый номер', class: 'form-control', required: true  %>
       </div>
 
       <div class="form-group">
         <%= location_form.label 'Область' %>
-        <%= location_form.text_field :region,  placeholder: 'Область', class: 'form-control', value: 'Томская область' %>
+        <%= location_form.text_field :region,  placeholder: 'Область', class: 'form-control', value: 'Томская область', required: true  %>
       </div>
 
       <div class="form-group">
         <%= location_form.label 'Город (Район)' %>
-        <%= location_form.text_field :district,  placeholder: 'Город (Район)', class: 'form-control' %>
+        <%= location_form.text_field :district,  placeholder: 'Город (Район)', class: 'form-control', required: true %>
       </div>
 
       <div class="form-group">
@@ -48,17 +48,17 @@
 
       <div class="form-group">
         <%= location_form.label 'Тип улицы' %>
-        <%= location_form.text_field :street_type,  placeholder: 'Тип улицы', class: 'form-control', value: 'Улица' %>
+        <%= location_form.text_field :street_type,  placeholder: 'Тип улицы', class: 'form-control', value: 'Улица', required: true  %>
       </div>
 
       <div class="form-group">
         <%= location_form.label 'Название улицы' %>
-        <%= location_form.text_field :street_name,  placeholder: 'Название улицы', class: 'form-control', value: 'Красноармейская' %>
+        <%= location_form.text_field :street_name,  placeholder: 'Название улицы', class: 'form-control', value: 'Красноармейская', required: true  %>
       </div>
 
       <div class="form-group">
         <%= location_form.label 'Номер дома' %>
-        <%= location_form.text_field :house_number,  placeholder: 'Номер дома', class: 'form-control', value: '148' %>
+        <%= location_form.text_field :house_number,  placeholder: 'Номер дома', class: 'form-control', value: '148', required: true  %>
       </div>
 
       <div class="form-group">
