@@ -11,61 +11,63 @@
       </ul>
     </div>
   <% end %>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn btn-outline-secondary" onClick="javascript:window.location.href='/search_queries/new?kdasrt=true'">Кадастр</div>
+    <div class="btn btn-outline-secondary" onClick="javascript:window.location.href='/search_queries/new'">Адрес</div>
+  </div>
 
   <div class="form-group">
     <%= form.label 'Описание запроса' %>
     <%= form.text_field :title, placeholder: 'Дело № 11', class: 'form-control', required: true %>
   </div>
-
   <br>
   <%= form.nested_fields_for :locations, Location.new do |location_form| %>
     <div class="panel">
 
-      <div class="form-group">
-        <%= location_form.check_box :use_kdastr %>
-        <%= location_form.label 'Использовать кадастр?' %>
-      </div>
+      <% if params[:kdasrt] %>
+        <div class="form-group">
+          <%= location_form.label 'Кадастровый номер' %>
+          <%= location_form.text_field :kdastr_id, placeholder: 'Кадастровый номер', class: 'form-control', required: true %>
+          <%= location_form.hidden_field :use_kdastr, value: true %>
+        </div>
+      <% else %>
 
-      <div class="form-group">
-        <%= location_form.label 'Кадастровый номер' %>
-        <%= location_form.text_field :kdastr_id,  placeholder: 'Кадастровый номер', class: 'form-control', required: true  %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Область' %>
+          <%= location_form.text_field :region, placeholder: 'Область', class: 'form-control', value: 'Томская область', required: true %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Область' %>
-        <%= location_form.text_field :region,  placeholder: 'Область', class: 'form-control', value: 'Томская область', required: true  %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Город (Район)' %>
+          <%= location_form.text_field :district, placeholder: 'Город (Район)', class: 'form-control', required: true %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Город (Район)' %>
-        <%= location_form.text_field :district,  placeholder: 'Город (Район)', class: 'form-control', required: true %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Населенный пункт' %>
+          <%= location_form.text_field :populated_area, placeholder: 'Населенный пункт', class: 'form-control' %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Населенный пункт' %>
-        <%= location_form.text_field :populated_area,  placeholder: 'Населенный пункт', class: 'form-control' %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Тип улицы' %>
+          <%= location_form.text_field :street_type, placeholder: 'Тип улицы', class: 'form-control', value: 'Улица', required: true %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Тип улицы' %>
-        <%= location_form.text_field :street_type,  placeholder: 'Тип улицы', class: 'form-control', value: 'Улица', required: true  %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Название улицы' %>
+          <%= location_form.text_field :street_name, placeholder: 'Название улицы', class: 'form-control', value: 'Красноармейская', required: true %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Название улицы' %>
-        <%= location_form.text_field :street_name,  placeholder: 'Название улицы', class: 'form-control', value: 'Красноармейская', required: true  %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Номер дома' %>
+          <%= location_form.text_field :house_number, placeholder: 'Номер дома', class: 'form-control', value: '148', required: true %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Номер дома' %>
-        <%= location_form.text_field :house_number,  placeholder: 'Номер дома', class: 'form-control', value: '148', required: true  %>
-      </div>
+        <div class="form-group">
+          <%= location_form.label 'Квартира' %>
+          <%= location_form.text_field :apartment, placeholder: 'Квартира', class: 'form-control', value: '26' %>
+        </div>
 
-      <div class="form-group">
-        <%= location_form.label 'Квартира' %>
-        <%= location_form.text_field :apartment,  placeholder: 'Квартира', class: 'form-control', value: '26' %>
-      </div>
-
+      <% end %>
       <div class="form-group">
         <%= form.add_nested_fields_link :locations, 'Добавить новый адрес' %>
         |
