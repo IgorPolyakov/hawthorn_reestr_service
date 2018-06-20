@@ -15,8 +15,7 @@
   <tr>
     <th>Статус</th>
     <th>Создан</th>
-    <th>Описание запроса</th>
-    <th>Список адресов</th>
+    <th>Запрос</th>
     <th colspan="2"></th>
   </tr>
   </thead>
@@ -26,9 +25,8 @@
     <tr>
       <td><span class="badge"><%= search_query.status %></span></td>
       <td><%= search_query.created_at %></td>
-      <td><%= search_query.title %></td>
-      <td>
-        <ul>
+      <td><a data-toggle="collapse" href="#collapse_list"><%= search_query.title %></a>
+        <ul id="collapse_list" class="collapse">
           <% search_query.locations.each do |location| %>
             <li>
               <span class="badge"><%= location.status %></span>
