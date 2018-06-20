@@ -17,9 +17,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'devise'
+gem 'devise-i18n'
 gem 'mongoid'
 gem 'sidekiq'
-gem 'devise-i18n'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

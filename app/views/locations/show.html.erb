@@ -1,4 +1,4 @@
-<p> <span class="badge"><%= @location.status %></span> </p>
+<p><span class="badge"><%= @location.status %></span></p>
 <p>ID: <strong><%= @location.id.to_s %></strong></p>
 <p>Использовать кадастр - <strong><%= @location.use_kdastr %></strong></p>
 <p>Кадастр - <strong><%= @location.kdastr_id %></strong></p>
@@ -10,9 +10,13 @@
 <p>Номер дома - <strong><%= @location.house_number %></strong></p>
 <p>Квартира - <strong><%= @location.apartment %></strong></p>
 <p>Поиск uid - <strong><%= @location.search_uid %></strong></p>
-<p>Скачать - <%= link_to 'Архив', download_search_query_location_path(@search_query, @location), class: 'btn btn-outline-primary' %></p>
+<p>Скачать
+  - <%= link_to 'Архив', download_search_query_location_path(@search_query, @location), class: 'btn btn-outline-primary' %>
+</p>
 <p>
-  <button id="log_btn" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#show_logs">Журнал событий</button>
+  <button id="log_btn" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#show_logs">
+    Журнал событий
+  </button>
 </p>
 <div id="show_logs" class="collapse">
   <pre id='logs'>
@@ -22,10 +26,10 @@
     $("#log_btn").click(function () {
         var location_id = '<%= @location.id %>'
         var search_query_id = '<%= @search_query.id %>'
-            $.getJSON("/search_queries/" + search_query_id + "/locations/"+ location_id +"/log.json", function (data) {
-                console.log(data);
-                $("#logs").text(data.log);
-            });
+        $.getJSON("/search_queries/" + search_query_id + "/locations/" + location_id + "/log.json", function (data) {
+            console.log(data);
+            $("#logs").text(data.log);
+        });
     });
 </script>
 <%= link_to "Назад", search_query_path(@search_query), class: 'btn btn-outline-success' %>

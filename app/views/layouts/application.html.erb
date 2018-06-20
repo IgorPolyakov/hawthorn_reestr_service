@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hawthorn Reestr Service</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Hawthorn Reestr Service</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= render partial: "navbar" %>
-    <%= render partial: "notice" %>
-    <br>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+<body>
+<%= render partial: "navbar" %>
+<%= render partial: "notice" %>
+<br>
+<div class="container">
+  <%= yield %>
+</div>
+</body>
 </html>
