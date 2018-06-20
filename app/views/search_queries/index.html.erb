@@ -25,8 +25,8 @@
     <tr>
       <td><span class="badge"><%= search_query.status %></span></td>
       <td><%= search_query.created_at %></td>
-      <td><a data-toggle="collapse" href="#collapse_list"><%= search_query.title %></a>
-        <ul id="collapse_list" class="collapse">
+      <td><a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>"><%= search_query.title %></a>
+        <ul id="collapse_list_<%= search_query.id.to_s %>" class="collapse">
           <% search_query.locations.each do |location| %>
             <li>
               <span class="badge"><%= location.status %></span>
