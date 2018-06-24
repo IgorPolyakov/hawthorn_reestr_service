@@ -30,6 +30,7 @@ class Location
 
   def run_zip_loader
     if status == 'в обработке'
+      logger.info "Run Zip Loader - Search Query: #{search_query.id.to_s}, Location: #{id.to_s)}"
       ZipLoaderWorker.perform_in(30.minutes, search_query.id.to_s, id.to_s)
     end
   end

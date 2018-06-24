@@ -18,6 +18,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap'
 gem 'devise'
 gem 'devise-i18n'
+gem 'lograge'
 gem 'mongoid'
 gem 'sidekiq'
 
