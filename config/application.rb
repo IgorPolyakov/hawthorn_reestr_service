@@ -28,7 +28,7 @@ module HawthornReestrService
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
+    config.mongoid.logger.level = Logger::INFO
     # Don't generate system test files.
     config.i18n.default_locale = :ru
     config.generators.system_tests = nil
