@@ -1,0 +1,3 @@
+[submodule "hwsdk"]
+	path = hwsdk
+	url = git@github.com:Neverhooda/hwsdk.git
