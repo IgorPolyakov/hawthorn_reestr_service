@@ -92,7 +92,7 @@ except TimeoutException:
 	terminate('ERROR', 'Main menu page was not loaded')
 
 try:
-	msg = WebDriverWait(browser, 5).until(EC.presence_of_element_located((By.XPATH, ResponseMenu.count_query)))
+	msg = WebDriverWait(browser, 30).until(EC.presence_of_element_located((By.XPATH, ResponseMenu.count_query)))
 except TimeoutException:
 	terminate('ERROR', 'Finde results page was not loaded')
 
