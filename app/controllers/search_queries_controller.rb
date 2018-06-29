@@ -26,7 +26,7 @@ class SearchQueriesController < ApplicationController
     respond_to do |format|
       if @search_query.save
         format.html { redirect_to @search_query, notice: 'Search query was successfully created.' }
-        format.json { render json: { message: 'saved' }.to_json, status: :ok }
+        format.json { render :show, status: :created, location: @search_query }
       else
         format.html { render :new }
         format.json { render json: @search_query.errors, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class SearchQueriesController < ApplicationController
   # PATCH /search_queries/1.json
   def update
     if @search_query.update(search_query_params)
-      render json: { message: 'saved' }.to_json, status: :ok
+      render :show, status: :ok, location: @search_query 
     else
       render json: @search_query.errors, status: :unprocessable_entity
     end
