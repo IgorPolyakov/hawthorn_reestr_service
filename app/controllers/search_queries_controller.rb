@@ -7,7 +7,7 @@ class SearchQueriesController < ApplicationController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    @search_queries = current_user.search_query.order_by(:created_at.desc)
+    @search_queries = User.first.search_query.order_by(:created_at.desc)
   end
 
   # GET /search_queries/1
@@ -16,13 +16,13 @@ class SearchQueriesController < ApplicationController
 
   # GET /search_queries/new
   def new
-    @search_query = current_user.search_query.new
+    @search_query = User.first.search_query.new
   end
 
   # POST /search_queries
   # POST /search_queries.json
   def create
-    @search_query = current_user.search_query.new(search_query_params)
+    @search_query = User.first.search_query.new(search_query_params)
     respond_to do |format|
       if @search_query.save
         format.html { redirect_to @search_query, notice: 'Search query was successfully created.' }
