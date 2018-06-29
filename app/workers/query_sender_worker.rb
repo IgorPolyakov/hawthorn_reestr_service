@@ -27,5 +27,6 @@ class QuerySenderWorker
     unless (status == 'в обработке') || (status == 'готово')
       raise "try to get 'search_uid'"
     end
+  rescue Mongoid::Errors::DocumentNotFound
   end
 end

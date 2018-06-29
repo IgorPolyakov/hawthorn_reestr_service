@@ -18,5 +18,6 @@ class ZipLoaderWorker
 
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
     raise 'wait for zip archive' unless status == 'готово'
+  rescue Mongoid::Errors::DocumentNotFound
   end
 end
