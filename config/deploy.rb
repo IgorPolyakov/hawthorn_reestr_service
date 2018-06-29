@@ -12,7 +12,12 @@ require 'mina/rbenv' # for rbenv support. (https://rbenv.org)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'hawthorn_reestr_service'
-set :domain, '80.211.41.148'
+
+# Development server
+set :domain, '46.17.43.85'
+# Production server
+# set :domain, '80.211.41.148'
+
 set :deploy_to, '/home/fox/hawthorn_reestr_service'
 set :repository, 'git@github.com:IgorPolyakov/hawthorn_reestr_service.git'
 set :branch, 'master'
