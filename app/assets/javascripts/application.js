@@ -11,6 +11,7 @@
 // about supported directives.
 //= require rails-ujs
 //= require jquery3
+//= require jquery-ui
 //= require popper
 //= require bootstrap-sprockets
 //= require nested_form_fields
