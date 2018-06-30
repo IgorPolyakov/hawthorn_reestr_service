@@ -20,10 +20,10 @@ class HomeLoaderWorker
     data[:house_number] = location.house_number == '' ? nil : location.house_number # "148"
     data[:apartment] = location.apartment == '' ? nil : location.apartment # "26"
 
-    pp "python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'"
+    Rails.logger.info { "Run Home Loader: python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'" }
     `python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'`
-    # `curl -v -H "Accept: application/json" -H "Content-type: application/json" POST -d '{ "search_query" : { "title" : "some_title", "locations_attributes" : { "0" : { "kdastr_id" : "88005553535", "use_kdastr" : "true" }, "1" : { "kdastr_id" : "88005553536", "use_kdastr" : "true" } } } }' http://127.0.0.1:3000/search_queries.json`
     # status = SearchQuery.find(search_query_id).locations.find(location_id).status
   rescue Mongoid::Errors::DocumentNotFound
+    Rails.logger.info { "Someone remove SearchQuery - #{search_query_id}. Location - #{location_id}. #{self.class} caught #{e.inspect}" }
   end
 end
