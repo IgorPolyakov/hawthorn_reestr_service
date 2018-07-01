@@ -18,7 +18,7 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1.json
   def update
     if @location.update(location_params)
-      render json: { message: 'saved' }.to_json, status: :ok
+      render :show, status: :ok, local: @location
     else
       render json: @location.errors, status: :unprocessable_entity
     end
