@@ -4,13 +4,14 @@ class SearchQuery
   include Mongoid::Document
   include Mongoid::Timestamps
   field :title, type: String
+  field :status, type: String, default: ''
   belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations
   after_save :run_workers
   after_create :run_hwsdk
 
-  def status
+  def counter
     total = locations.inject(0) { |sum, loc| loc.status == 'готово' ? sum + 1 : sum }
     "#{total}/#{locations.count}"
   end

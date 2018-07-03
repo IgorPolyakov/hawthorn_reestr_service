@@ -38,7 +38,7 @@ class SearchQueriesController < ApplicationController
   # PATCH /search_queries/1.json
   def update
     if @search_query.update(search_query_params)
-      render :show, status: :ok, location: @search_query 
+      render :show, status: :ok, location: @search_query
     else
       render json: @search_query.errors, status: :unprocessable_entity
     end
@@ -67,6 +67,7 @@ class SearchQueriesController < ApplicationController
       .require(:search_query)
       .permit(
         :title,
+        :status,
         locations_attributes: %i[
           id
           kdastr_id
