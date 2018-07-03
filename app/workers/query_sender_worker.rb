@@ -26,10 +26,10 @@ class QuerySenderWorker
     `python3 #{Rails.root.join('selenium_py', 'query_sender.py')} -v -http -q '[#{data.to_json}]'`
     status = SearchQuery.find(search_query_id).locations.find(location_id).status
     unless (status == 'в обработке') || (status == 'готово')
-      raise NotReady, "Pending receipt of status: SearchQuery - #{search_query_id}. Location - #{location_id}. (get search_uid)"
+      raise NotReady, "SearchQuery - #{search_query_id}. Location - #{location_id}. (get search_uid)"
     end
   rescue NotReady => e
-    Rails.logger.info { "#{self.class} caught #{e.inspect}, retrying" }
+    Rails.logger.info { "#{e.inspect}, retrying" }
     QuerySenderWorker.perform_in(5.minutes, search_query_id, location_id)
   rescue Mongoid::Errors::DocumentNotFound
     Rails.logger.info { "Someone remove SearchQuery - #{search_query_id}. Location - #{location_id}. #{self.class} caught #{e.inspect}" }

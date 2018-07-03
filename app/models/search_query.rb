@@ -9,7 +9,6 @@ class SearchQuery
   embeds_many :locations
   accepts_nested_attributes_for :locations
   after_save :run_workers
-  after_create :run_hwsdk
 
   def counter
     total = locations.inject(0) { |sum, loc| loc.status == 'готово' ? sum + 1 : sum }
@@ -30,9 +29,5 @@ class SearchQuery
         QuerySenderWorker.perform_async(id.to_s, location.id.to_s)
       end
     end
-  end
-
-  def run_hwsdk
-    RegisterService.perform_async(id.to_s)
   end
 end
