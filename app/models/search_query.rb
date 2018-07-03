@@ -4,7 +4,7 @@ class SearchQuery
   include Mongoid::Document
   include Mongoid::Timestamps
   field :title, type: String
-  field :status, type: String, default: ''
+  field :status, type: String, default: 'process'
   belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations
