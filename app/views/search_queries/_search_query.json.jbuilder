@@ -3,6 +3,7 @@
 json.array! @search_query do |sq|
   json.id sq.id.to_s
   json.title sq.title
+  json.status sq.status
   json.created_at sq.created_at
   json.location sq.locations do |location|
     json.id location.id.to_s

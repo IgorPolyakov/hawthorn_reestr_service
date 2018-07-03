@@ -23,7 +23,7 @@
   <tbody>
   <% @search_queries.each do |search_query| %>
     <tr>
-      <td><%= search_query.status %><span class="badge"><%= search_query.counter %></span></td>
+      <td><%= search_query.status %> <span class="badge"><%= search_query.counter %></span></td>
       <td><%= search_query.created_at %></td>
       <td><a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>"><%= search_query.title %></a>
         <ul id="collapse_list_<%= search_query.id.to_s %>" class="collapse">
