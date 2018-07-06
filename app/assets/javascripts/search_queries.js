@@ -3,9 +3,10 @@ function status() {
     let val = $(ele).text();
 
     // if value like this - 0/0
-    if (val.match(/\d+\/\d+/ig)) {
-      let result = val.split('/');
-      if (result[0] === result[1]) {
+    if (val.match(/\w+\s\-\s\d+\/\d+/ig)) {
+      let result = val.split(/[\s\/]+/);
+      console.log(result);
+      if (result[2] === result[3]) {
         $(ele).addClass('badge-success');
       } else {
         $(ele).addClass('badge-warning');
