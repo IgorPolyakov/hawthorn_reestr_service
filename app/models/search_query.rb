@@ -11,7 +11,9 @@ class SearchQuery
   after_save :run_workers
 
   def counter
-    total = locations.inject(0) { |sum, loc| loc.status == 'готово' ? sum + 1 : sum }
+    wait_status = ['запуск', 'в обработке']
+    done_status = %w[готово ошибка закончено]
+    total = locations.inject(0) { |sum, loc| wait_status.any?(loc.status) ? sum : sum + 1 }
     "#{total}/#{locations.count}"
   end
 
