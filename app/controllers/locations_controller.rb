@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: %i[show update download log]
+  before_action :set_location, only: %i[index show update download log]
   skip_before_action :verify_authenticity_token
   # GET /locations
   # GET /locations.json
   def index
-    @search_query = SearchQuery.find(params[:search_query_id])
     @locations = @search_query.locations
   end
 
