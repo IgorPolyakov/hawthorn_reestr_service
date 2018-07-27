@@ -30,10 +30,25 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.active_job.queue_adapter = :sidekiq
 
-  config.action_mailer.perform_caching = false
-
+  config.action_mailer.default_url_options = {
+    host: 'mail.ru',
+    from: 'fox_741@mail.ru'
+  }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    tls: true,
+    enable_starttls_auto: true,
+    address: 'smtp.mail.ru',
+    port: 465,
+    email_from: 'fox_741@mail.ru',
+    authentication: :login,
+    user_name: 'fox_741',
+    password: Rails.application.credentials[:mail_password]
+  }
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
