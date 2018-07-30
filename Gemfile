@@ -27,5 +27,6 @@ group :development do
   gem 'mina', group: :development
   gem 'rubocop'
   gem 'spring'
+  gem 'pry-rails'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

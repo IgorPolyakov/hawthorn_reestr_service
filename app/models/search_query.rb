@@ -5,11 +5,13 @@ class SearchQuery
   include Mongoid::Timestamps
   field :title, type: String
   field :status, type: String, default: 'process'
+  field :archive, type: Boolean, default: false
   belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations
   after_save :run_workers
-
+  scope :archive, -> { where(archive: true) }
+  scope :active, -> { where(archive: false) }
   def counter
     wait_status = ['запуск', 'в обработке']
     done_status = %w[готово ошибка закончено]

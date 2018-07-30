@@ -1,3 +1,8 @@
+<%= form_for @search_query do |f| %>
+  <%= f.hidden_field :archive, value: true %>
+  <%= f.submit 'В архив' %>
+<% end %>
+
 <p>
   <strong> ID:</strong>
   <%= @search_query.id.to_s %>

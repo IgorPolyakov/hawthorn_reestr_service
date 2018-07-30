@@ -7,7 +7,11 @@ class SearchQueriesController < ApplicationController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    @search_queries = User.first.search_query.order_by(:created_at.desc)
+    if params[:archive].present?
+      @search_queries = User.first.search_query.archive.order_by(:created_at.desc)
+    else
+      @search_queries = User.first.search_query.active.order_by(:created_at.desc)
+    end
   end
 
   # GET /search_queries/1
