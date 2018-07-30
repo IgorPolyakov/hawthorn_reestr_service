@@ -1,7 +1,6 @@
 function status() {
   $('.badge').each(function(i, ele) {
     let val = $(ele).text();
-
     // if value like this - 0/0
     if (val.match(/\w+\s\-\s\d+\/\d+/ig)) {
       let result = val.split(/[\s\/]+/);

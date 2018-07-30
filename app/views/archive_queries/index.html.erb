@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-auto  mr-auto">
+      <h3>Архив запросов</h3>
+    </div>
+  </div>
+</div>
+
+<br>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Статус</th>
+    <th>Создан</th>
+    <th>Запрос</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @search_queries.each do |search_query| %>
+    <tr>
+      <td><span class="badge"><%= "#{search_query.status} - #{search_query.counter}" %></span></td>
+      <td><%= search_query.created_at %></td>
+      <td><a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>"><%= search_query.title %></a>
+        <ul id="collapse_list_<%= search_query.id.to_s %>" class="collapse">
+          <% search_query.locations.each do |location| %>
+            <li>
+              <span class="badge"><%= location.status %></span>
+              <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
+            </li>
+          <% end %>
+        </ul>
+      </td>
+      <td><%= link_to 'Просмотр', search_query %></td>
+      <td><%= link_to 'Удаление', search_query, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>

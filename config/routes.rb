@@ -3,6 +3,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users
+  resources :archive_queries, only: %i[index show]
   resources :search_queries do
     resources :locations, only: %i[update show] do
       member do

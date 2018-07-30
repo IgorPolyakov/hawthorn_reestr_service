@@ -7,11 +7,7 @@ class SearchQueriesController < ApplicationController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    if params[:archive].present?
-      @search_queries = User.first.search_query.archive.order_by(:created_at.desc)
-    else
-      @search_queries = User.first.search_query.active.order_by(:created_at.desc)
-    end
+    @search_queries = User.first.search_query.active.order_by(:created_at.desc)
   end
 
   # GET /search_queries/1
@@ -70,6 +66,7 @@ class SearchQueriesController < ApplicationController
     params
       .require(:search_query)
       .permit(
+        :archive,
         :title,
         :status,
         locations_attributes: %i[
