@@ -22,7 +22,7 @@ class HomeLoaderWorker
 
     Rails.logger.info { "Run Home Loader: python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'" }
     `python3 #{Rails.root.join('selenium_py', 'home_loader.py')} -v -http -q '[#{data.to_json}]'`
-    # status = SearchQuery.find(search_query_id).locations.find(location_id).status
+  # status = SearchQuery.find(search_query_id).locations.find(location_id).status
   rescue Mongoid::Errors::DocumentNotFound
     Rails.logger.info { "Someone remove SearchQuery - #{search_query_id}. Location - #{location_id}. #{self.class} caught #{e.inspect}" }
   end

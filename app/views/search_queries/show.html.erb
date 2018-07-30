@@ -13,11 +13,11 @@
 </p>
 
 <%= form_for @search_query do |f| %>
-<%= f.hidden_field :archive, value: true %>
-<div class="btn-group" role="group" aria-label="Basic example">
-  <%= f.submit 'В архив', class: 'btn btn-outline-warning' %>
-  <%= link_to 'Удаление', @search_query, class: 'btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
-</div>
+  <%= f.hidden_field :archive, value: true %>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <%= f.submit 'В архив', class: 'btn btn-outline-warning' %>
+    <%= link_to 'Удаление', @search_query, class: 'btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+  </div>
 <% end %>
 
 <p>

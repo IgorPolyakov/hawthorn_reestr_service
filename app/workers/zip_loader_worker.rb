@@ -4,6 +4,7 @@ class ZipLoaderWorker
   include Sidekiq::Worker
   class NotReady < StandardError
   end
+
   def perform(search_query_id, location_id)
     search_query = SearchQuery.find(search_query_id)
     location = search_query.locations.find(location_id)

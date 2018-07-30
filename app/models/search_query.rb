@@ -12,6 +12,7 @@ class SearchQuery
   after_save :run_workers
   scope :archive, -> { where(archive: true) }
   scope :active, -> { where(archive: false) }
+
   def counter
     wait_status = ['запуск', 'в обработке']
     done_status = %w[готово ошибка закончено]

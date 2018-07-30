@@ -11,22 +11,22 @@
 
 <br>
 <% @search_queries.each do |search_query| %>
-<div class="card">
-  <div class="card-body">
-    <span class="badge float-sm-right"><%= "#{search_query.status} - #{search_query.counter}" %></span>
-    <h5 class="card-title"><%= link_to search_query.title, search_query, class: 'card-link' %></h5>
-    <h6 class="card-subtitle mb-2 text-muted"><%= l search_query.created_at, format: :short %></h6>
-    <br>
-    <a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>">Адреса</a>
-    <ul  class="list-group collapse" id="collapse_list_<%= search_query.id.to_s %>">
-      <% search_query.locations.each do |location| %>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
-         <span class="badge"><%= location.status %></span>
-      </li>
-      <% end %>
-    </ul>
+  <div class="card">
+    <div class="card-body">
+      <span class="badge float-sm-right"><%= "#{search_query.status} - #{search_query.counter}" %></span>
+      <h5 class="card-title"><%= link_to search_query.title, search_query, class: 'card-link' %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= l search_query.created_at, format: :short %></h6>
+      <br>
+      <a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>">Адреса</a>
+      <ul class="list-group collapse" id="collapse_list_<%= search_query.id.to_s %>">
+        <% search_query.locations.each do |location| %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
+            <span class="badge"><%= location.status %></span>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
-<br>
+  <br>
 <% end %>

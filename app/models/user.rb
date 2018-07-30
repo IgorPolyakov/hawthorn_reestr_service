@@ -37,6 +37,7 @@ class User
   # field :locked_at,       type: Time
   has_many :search_query
   after_create :send_wellcome_mail
+
   def send_wellcome_mail
     UserMailer.with(user: self).welcome_email.deliver
   end
