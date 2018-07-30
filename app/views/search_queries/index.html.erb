@@ -10,36 +10,23 @@
 </div>
 
 <br>
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Статус</th>
-    <th>Создан</th>
-    <th>Запрос</th>
-    <th colspan="2"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @search_queries.each do |search_query| %>
-    <tr>
-      <td><span class="badge"><%= "#{search_query.status} - #{search_query.counter}" %></span></td>
-      <td><%= search_query.created_at %></td>
-      <td><a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>"><%= search_query.title %></a>
-        <ul id="collapse_list_<%= search_query.id.to_s %>" class="collapse">
-          <% search_query.locations.each do |location| %>
-            <li>
-              <span class="badge"><%= location.status %></span>
-              <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
-            </li>
-          <% end %>
-        </ul>
-      </td>
-      <td><%= link_to 'Просмотр', search_query %></td>
-      <td><%= link_to 'Удаление', search_query, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
+<% @search_queries.each do |search_query| %>
+<div class="card">
+  <div class="card-body">
+    <span class="badge float-sm-right"><%= "#{search_query.status} - #{search_query.counter}" %></span>
+    <h5 class="card-title"><%= link_to search_query.title, search_query, class: 'card-link' %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= l search_query.created_at, format: :short %></h6>
+    <br>
+    <a data-toggle="collapse" href="#collapse_list_<%= search_query.id.to_s %>">Адреса</a>
+    <ul  class="list-group collapse" id="collapse_list_<%= search_query.id.to_s %>">
+      <% search_query.locations.each do |location| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
+         <span class="badge"><%= location.status %></span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 <br>
+<% end %>

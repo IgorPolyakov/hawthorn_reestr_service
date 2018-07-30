@@ -1,8 +1,3 @@
-<%= form_for @search_query do |f| %>
-  <%= f.hidden_field :archive, value: true %>
-  <%= f.submit 'В архив', class: 'btn btn-outline-danger' %>
-<% end %>
-
 <p>
   <strong> ID:</strong>
   <%= @search_query.id.to_s %>
@@ -17,6 +12,14 @@
   <%= @search_query.title %>
 </p>
 
+<%= form_for @search_query do |f| %>
+<%= f.hidden_field :archive, value: true %>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <%= f.submit 'В архив', class: 'btn btn-outline-warning' %>
+  <%= link_to 'Удаление', @search_query, class: 'btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>
+<% end %>
+
 <p>
   <strong>Адрес:</strong>
 <ul>
@@ -28,7 +31,7 @@
     <br>
     <div class="btn-group" role="group">
       <%= link_to 'Детали', search_query_location_path(@search_query, location), class: 'btn btn-outline-info' %>
-      <%= link_to 'Архив', download_search_query_location_path(@search_query, location), class: 'btn btn-outline-primary' %>
+      <%= link_to 'Скачать', download_search_query_location_path(@search_query, location), class: 'btn btn-outline-primary' %>
     </div>
   <% end %>
 </ul>
