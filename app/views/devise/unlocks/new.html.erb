@@ -3,9 +3,9 @@
 <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: {method: :post}) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="form-group">
+  <div class="field">
     <%= f.label :email %><br/>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true %>
   </div>
 
   <div class="actions">
