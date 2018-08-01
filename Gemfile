@@ -28,6 +28,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'mina', group: :development
   gem 'pry-rails'
+  gem 'i18n-tasks'
   gem 'rubocop'
   gem 'spring'
   gem 'spring-watcher-listen'

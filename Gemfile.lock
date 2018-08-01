@@ -74,13 +74,27 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.6.4)
       devise (>= 4.4)
+    easy_translate (0.5.1)
+      thread
+      thread_safe
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    highline (2.0.0)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
+    i18n-tasks (0.9.21)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      easy_translate (>= 0.5.1)
+      erubi
+      highline (>= 1.7.3)
+      i18n
+      parser (>= 2.2.3.0)
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     jaro_winkler (1.5.1)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -220,7 +234,10 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.20.0)
+    thread (0.2.2)
     thread_safe (0.3.6)
     tilt (2.0.8)
     turbolinks (5.1.1)
@@ -246,6 +263,7 @@ DEPENDENCIES
   coffee-rails
   devise
   devise-i18n
+  i18n-tasks
   jbuilder
   jquery-rails
   jquery-ui-rails
