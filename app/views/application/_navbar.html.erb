@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <%= link_to 'Hawthorn Reestr Service', root_path, class: "navbar-brand" %>
-  <span class="badge badge-secondary"><%= Rails.env if Rails.env == 'development' %></span>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <% if true %>
+    <% if user_signed_in? %>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <%= link_to 'Запросы', search_queries_path, class: "nav-link" %>
@@ -17,6 +16,12 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          <div class="nav-link">
+            <%= current_user.email %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <%= link_to t(".sign_out"), destroy_user_session_path, method: :delete, class: "nav-link" %>
         </li>
       </ul>
     <% else %>

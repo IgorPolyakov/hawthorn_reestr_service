@@ -22,6 +22,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'mongoid'
 gem 'sidekiq'
+gem 'simple_token_authentication'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

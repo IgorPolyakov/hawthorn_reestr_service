@@ -204,6 +204,10 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    simple_token_authentication (1.15.1)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -256,6 +260,7 @@ DEPENDENCIES
   rubocop
   sass-rails
   sidekiq
+  simple_token_authentication
   spring
   spring-watcher-listen
   turbolinks

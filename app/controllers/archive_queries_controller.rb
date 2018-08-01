@@ -7,7 +7,7 @@ class ArchiveQueriesController < ApplicationController
   # GET /search_queries
   # GET /search_queries.json
   def index
-    @search_queries = User.first.search_query.archive.order_by(:created_at.desc)
+    @search_queries = current_user.search_query.archive.order_by(:created_at.desc)
   end
 
   # GET /search_queries/1
