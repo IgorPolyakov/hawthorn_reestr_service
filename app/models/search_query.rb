@@ -9,7 +9,7 @@ class SearchQuery
   belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations
-  after_save :run_workers
+  after_save :remove_finished
   scope :archive, -> { where(archive: true) }
   scope :active, -> { where(archive: false) }
 
@@ -22,17 +22,9 @@ class SearchQuery
 
   private
 
-  def run_workers
+  def remove_finished
     locations.each do |location|
       location.delete if location.status == 'закончено'
-    end
-
-    locations.each do |location|
-      if location.status == 'запуск' && location.apartment.try(:empty?)
-        HomeLoaderWorker.perform_async(id.to_s, location.id.to_s)
-      else
-        QuerySenderWorker.perform_async(id.to_s, location.id.to_s)
-      end
     end
   end
 end

@@ -3,7 +3,6 @@
 class Location
   include Mongoid::Document
   include Mongoid::Timestamps
-  after_save :run_zip_loader
 
   field :kdastr_id, type: String # optional
   field :use_kdastr, type: Boolean, default: false # optional
@@ -25,15 +24,4 @@ class Location
   def log
     File.exist?(log_path) ? File.read(log_path) : 'Нет доступных журналов'
   end
-
-  private
-
-  def run_zip_loader
-    if status == 'в обработке'
-      ZipLoaderWorker.perform_in(30.minutes, search_query.id.to_s, id.to_s)
-    end
-  end
 end
-
-# required date_request: yyyy-dd-MMThh:mm:ss (or some like this)
-# required date_response: yyyy-dd-MMThh:mm:ss (or some like this)
