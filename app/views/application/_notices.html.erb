@@ -1,0 +1,5 @@
+<% if notice %>
+  <%= render partial: "notice", locals: {text: notice, type: 'success'} %>
+<% elsif alert %>
+  <%= render partial: "notice", locals: {text: alert, type: 'danger'} %>
+<% end %>
