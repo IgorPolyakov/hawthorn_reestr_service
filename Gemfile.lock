@@ -260,7 +260,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap
-  coffee-rails
   devise
   devise-i18n
   i18n-tasks
