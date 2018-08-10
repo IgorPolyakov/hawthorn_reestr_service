@@ -50,9 +50,19 @@ class LocationsController < ApplicationController
     params
       .require(:location)
       .permit(
+        :kdastr_id,
+        :use_kdastr,
+        :region,
+        :district,
+        :populated_area,
+        :street_type,
+        :street_name,
+        :house_number,
+        :apartment,
+        :zip_url,
         :status,
         :search_uid,
-        :zip_url,
+        :log_path,
         :root_path
       )
   end
