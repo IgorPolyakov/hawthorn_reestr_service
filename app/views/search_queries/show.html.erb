@@ -37,4 +37,23 @@
 </ul>
 </p>
 
+<p>
+  <button id="log_btn" data-toggle="collapse" class="btn btn-outline-secondary" data-target="#show_logs">
+    Журнал событий
+  </button>
+</p>
+<div id="show_logs" class="collapse">
+  <pre id='logs'>
+  </pre>
+</div>
+<script>
+    $("#log_btn").click(function () {
+        var search_query_id = '<%= @search_query.id %>'
+        $.getJSON("/search_queries/" + search_query_id + "/log.json", function (data) {
+            console.log(data);
+            $("#logs").text(data.log);
+        });
+    });
+</script>
+
 <%= link_to 'Назад', search_queries_path, class: 'btn btn-outline-success' %>

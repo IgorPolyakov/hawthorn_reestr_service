@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     resources :locations, only: %i[update show] do
       member do
         get :download
-        get :log
       end
+    end
+    member do
+      get :log
     end
   end
   root 'search_queries#index'

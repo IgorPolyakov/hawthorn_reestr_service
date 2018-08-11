@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchQueriesController < ApplicationController
-  before_action :set_search_query, only: %i[show destroy update]
+  before_action :set_search_query, only: %i[show destroy update log]
 
   skip_before_action :verify_authenticity_token
   # GET /search_queries
@@ -52,6 +52,10 @@ class SearchQueriesController < ApplicationController
       format.html { redirect_to search_queries_url, notice: 'Search query was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def log
+    render json: { log: @search_query.log }
   end
 
   private

@@ -17,11 +17,7 @@ class Location
   field :status, type: String, default: 'запуск'
   field :search_uid, type: String
   field :root_path, type: String, default: ''
-  field :log_path, type: String, default: ''
 
   embedded_in :search_query
   # validates :region, :street_type, :street_name, :house_number, :apartment, :zip_url, presence: true
-  def log
-    File.exist?(log_path) ? File.read(log_path) : 'Нет доступных журналов'
-  end
 end

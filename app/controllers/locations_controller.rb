@@ -33,10 +33,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  def log
-    render json: { log: @location.log }
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

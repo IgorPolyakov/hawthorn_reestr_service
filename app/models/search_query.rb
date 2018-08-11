@@ -6,12 +6,17 @@ class SearchQuery
   field :title, type: String
   field :status, type: String, default: 'process'
   field :archive, type: Boolean, default: false
+  field :log_path, type: String, default: ''
   belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations
   after_save :remove_finished
   scope :archive, -> { where(archive: true) }
   scope :active, -> { where(archive: false) }
+
+  def log
+    File.exist?(log_path) ? File.read(log_path) : 'Нет доступных журналов'
+  end
 
   def counter
     wait_status = ['запуск', 'в обработке']
