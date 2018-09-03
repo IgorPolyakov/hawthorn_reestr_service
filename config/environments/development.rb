@@ -32,7 +32,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.active_job.queue_adapter = :sidekiq
+  # config.active_job.queue_adapter = :sidekiq
 
   config.action_mailer.default_url_options = {
     host: 'mail.ru',

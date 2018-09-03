@@ -9,7 +9,6 @@
 -   RAILS
 -   MONGODB
 -   SELENIUM
--   REDIS
 
 ## Packets for reestr
 

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'sidekiq/web'
 Rails.application.routes.draw do
   devise_for :users
   resources :archive_queries, only: %i[index show]
@@ -15,5 +14,4 @@ Rails.application.routes.draw do
     end
   end
   root 'search_queries#index'
-  mount Sidekiq::Web => '/sidekiq'
 end
