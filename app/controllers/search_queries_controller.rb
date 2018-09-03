@@ -38,6 +38,7 @@ class SearchQueriesController < ApplicationController
   # PATCH /search_queries/1.json
   def update
     if @search_query.update(search_query_params)
+      UserMailer.with(user: current_user, search_query: @search_query).rosreesrt_request_done.deliver if @search_query.complite?
       render :show, status: :ok, location: @search_query
     else
       render json: @search_query.errors, status: :unprocessable_entity

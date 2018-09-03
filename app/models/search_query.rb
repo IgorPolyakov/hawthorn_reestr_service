@@ -30,6 +30,10 @@ class SearchQuery
     "#{total}/#{locations.count}"
   end
 
+  def complite?
+    status.eql? 'success'
+  end
+
   private
 
   def remove_finished
