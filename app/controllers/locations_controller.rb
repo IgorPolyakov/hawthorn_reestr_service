@@ -59,7 +59,11 @@ class LocationsController < ApplicationController
         :status,
         :search_uid,
         :log_path,
-        :root_path
+        :root_path,
+        :pdf_url,
+        :xml_url,
+        :short_address,
+        :object_type
       )
   end
 end
