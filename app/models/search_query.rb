@@ -7,6 +7,11 @@ class SearchQuery
   field :status, type: String, default: 'process'
   field :archive, type: Boolean, default: false
   field :log_path, type: String, default: ''
+  field :pdf_url_all, type: String
+  field :zip_url_all, type: String
+  field :xml_url_all, type: String
+  field :zip_url_apartament, type: String
+  field :zip_url_other, type: String
   belongs_to :user
   embeds_many :locations
   accepts_nested_attributes_for :locations

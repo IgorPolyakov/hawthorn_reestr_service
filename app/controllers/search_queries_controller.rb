@@ -73,6 +73,11 @@ class SearchQueriesController < ApplicationController
         :archive,
         :title,
         :status,
+        :pdf_url_all,
+        :zip_url_all,
+        :xml_url_all,
+        :zip_url_apartament,
+        :zip_url_other,
         locations_attributes: %i[
           id
           kdastr_id
