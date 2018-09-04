@@ -15,5 +15,9 @@ json.set! :location do
   json.status @location.status
   json.search_uid @location.search_uid
   json.root_path @location.root_path
+  json.pdf_url @location.pdf_url
+  json.xml_url @location.xml_url
+  json.short_address @location.short_address
+  json.object_type @location.object_type
   json.updated_at @location.updated_at
 end
