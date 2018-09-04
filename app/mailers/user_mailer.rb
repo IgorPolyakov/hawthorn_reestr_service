@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
   def rosreesrt_request_done
     @user = params[:user]
     @search_query = params[:search_query]
-    email = 'igorpolyakov@protonmail.com' # @user.email
+    email = 'Kondil@list.ru' # @user.email
     mail(to: email, subject: 'SearchQuery is done')
   end
 end
