@@ -60,7 +60,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = {
-    host: 'mail.ru',
+    host: '46.17.43.85:9999',
     from: 'fox_741@mail.ru'
   }
   config.action_mailer.delivery_method = :smtp
