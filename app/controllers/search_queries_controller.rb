@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchQueriesController < ApplicationController
-  before_action :set_search_query, only: %i[show destroy update log]
+  before_action :set_search_query, only: %i[show destroy update log download]
 
   skip_before_action :verify_authenticity_token
   # GET /search_queries
@@ -57,6 +57,14 @@ class SearchQueriesController < ApplicationController
 
   def log
     render json: { log: @search_query.log }
+  end
+
+  def download
+    pdf_file = @search_query.pdf_url_all
+    send_file pdf_file, disposition: 'attachment'
+  rescue StandardError => e
+    flash[:alert] = "Error: #{e.message}"
+    redirect_to root_path
   end
 
   private

@@ -1,6 +1,6 @@
 <p>
-  <strong> ID:</strong>
-  <%= @search_query.id.to_s %>
+  id:
+   <strong><%= @search_query.id.to_s %></strong>
 </p>
 
 <p>
@@ -8,20 +8,23 @@
 </p>
 
 <p>
-  <strong>Название:</strong>
+    Название:
+<strong>
   <%= @search_query.title %>
+</strong>
 </p>
 
 <%= form_for @search_query do |f| %>
   <%= f.hidden_field :archive, value: true %>
   <div class="btn-group" role="group" aria-label="Basic example">
+    <%= link_to 'PDF',  download_search_query_path(@search_query), class: 'btn btn-outline-primary' %>
     <%= f.submit 'В архив', class: 'btn btn-outline-warning' %>
     <%= link_to 'Удаление', @search_query, class: 'btn btn-outline-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
   </div>
 <% end %>
 
 <p>
-  <strong>Адрес:</strong>
+    Адрес:
 <ul>
   <% @search_query.locations.each do |location| %>
     <li>
@@ -32,7 +35,7 @@
     <div class="btn-group" role="group">
       <%= link_to 'Детали', search_query_location_path(@search_query, location), class: 'btn btn-outline-info' %>
       <%= link_to 'Скачать', download_search_query_location_path(@search_query, location), class: 'btn btn-outline-primary' %>
-    </div>
+     </div>
   <% end %>
 </ul>
 </p>

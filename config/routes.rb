@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     member do
       get :log
+      get :download
     end
   end
   root 'search_queries#index'
