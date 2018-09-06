@@ -21,7 +21,7 @@
       <ul class="list-group collapse" id="collapse_list_<%= search_query.id.to_s %>">
         <% search_query.locations.each do |location| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
+            <%= location.full_address %>
             <span class="badge"><%= location.status %></span>
           </li>
         <% end %>

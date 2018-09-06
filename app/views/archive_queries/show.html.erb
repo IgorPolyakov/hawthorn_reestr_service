@@ -23,7 +23,7 @@
   <% @search_query.locations.each do |location| %>
     <li>
       <span class="badge"><%= location.status %></span>
-      <%= "обл. #{location.region}, ул. #{location.street_name}, д. #{location.house_number} кв. #{location.apartment}" %>
+      <%= location.full_address %>
     </li>
     <br>
     <div class="btn-group" role="group">

@@ -24,4 +24,7 @@ class Location
 
   embedded_in :search_query
   # validates :region, :street_type, :street_name, :house_number, :apartment, :zip_url, presence: true
+  def full_address
+    "#{region}, #{street_type} #{street_name}, д. #{house_number} кв. #{apartment}"
+  end
 end
