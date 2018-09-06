@@ -165,6 +165,8 @@ test:
 production:
   clients:
     default:
+      use_utc: false
+      use_activesupport_time_zone: true
       database: hawthorn_reestr_service_production
       hosts:
         - localhost:27017

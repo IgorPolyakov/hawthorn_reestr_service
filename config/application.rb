@@ -31,6 +31,7 @@ module HawthornReestrService
     config.generators.javascript_engine = :js
     config.mongoid.logger.level = Logger::INFO
     # Don't generate system test files.
+    config.time_zone = 'Asia/Krasnoyarsk'
     config.i18n.default_locale = :ru
     config.generators.system_tests = nil
   end
