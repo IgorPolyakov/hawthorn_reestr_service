@@ -4,10 +4,12 @@ function status() {
     // if value like this - 0/0
     if (val.match(/\w+\s\-\s\d+\/\d+/ig)) {
       let result = val.split(/[\s\/]+/);
-      if (result[2] === result[3]) {
+      if ((result[2] === result[3]) && (result[0] === 'success')) {
         $(ele).addClass('badge-success');
-      } else {
+      } else if (result[0] === 'process'){
         $(ele).addClass('badge-warning');
+      } else {
+        $(ele).addClass('badge-danger');
       }
     }
     // else color status
