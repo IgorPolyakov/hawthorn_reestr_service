@@ -6,10 +6,10 @@ function status() {
       let result = val.split(/[\s\/]+/);
       if ((result[2] === result[3]) && (result[0] === 'success')) {
         $(ele).addClass('badge-success');
-      } else if (result[0] === 'process'){
-        $(ele).addClass('badge-warning');
-      } else {
+      } else if (result[0] === 'error'){
         $(ele).addClass('badge-danger');
+      } else {
+        $(ele).addClass('badge-warning');
       }
     }
     // else color status
